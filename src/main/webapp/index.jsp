@@ -41,8 +41,8 @@
 						<!-- Me -->
 							<article id="home" class="panel intro">
 								<header>
-									<h1>자유 게시판입니다</h1>
-									<p>Senior Astral Projectionist</p>
+									<h1>환영합니다 😊</h1>
+									<p></p>
 								</header>
 								<a href="#work" class="jumplink pic">
 									<span class="arrow icon solid fa-chevron-right"><span>See my work</span></span>
