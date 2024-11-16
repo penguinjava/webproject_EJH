@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>로그인 홈입니다</h1>
+<h1>리스트 홈입니다.</h1>
 </body>
 </html>
