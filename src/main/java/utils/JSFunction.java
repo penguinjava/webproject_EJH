@@ -1,5 +1,7 @@
 package utils;
 
+import java.io.PrintWriter;
+
 import jakarta.servlet.http.HttpServletResponse;
 
 public class JSFunction {
@@ -9,9 +11,31 @@ public class JSFunction {
 						String msg, String url) {
 		
 		try {
-			
-		} catch (Exception e) {
-			
-		}
+			resp.setContentType("text/html;charset=UTF-8");
+			PrintWriter writer = resp.getWriter();
+			String script =""
+						+ "<script>"
+						+ "		alert('" + msg + "');"
+						+ " 	location.href'" + url +"';"
+						+ "</script>";
+			writer.print(script);
+		} catch (Exception e) {}
+	}
+	
+	
+	// 경고창 -> 이전페이지
+	public static void alertBack(HttpServletResponse resp,
+			String msg) {
+
+		try {
+			resp.setContentType("text/html;charset=UTF-8");
+			PrintWriter writer = resp.getWriter();
+			String script =""
+					+ "<script>"
+					+ "		alert('" + msg + "');"
+					+ " 	history.back();"
+					+ "</script>";
+			writer.print(script);
+		} catch (Exception e) {}
 	}
 }
