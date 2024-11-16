@@ -2,28 +2,26 @@ package board;
 
 public class BoardDTO {
 	//board 필드 생성
-	private String idx;
-	private String id;
+	private String board_id; // board 식별아이디
+	private String user_id; // member 식별아이디
 	private String title;
 	private String content;
-	private String postdate;
-	private String ofile;
-	private String sfile;
-	private String downcount;
+	private String postdate; // 날짜
+	private String category; //게시물별 검색
 	private int visitcount;
 	
 	//get&set 설정
-	public String getIdx() {
-		return idx;
+	public String getBoard_id() {
+		return board_id;
 	}
-	public void setIdx(String idx) {
-		this.idx = idx;
+	public void setBoard_id(String board_id) {
+		this.board_id = board_id;
 	}
-	public String getId() {
-		return id;
+	public String getUser_id() {
+		return user_id;
 	}
-	public void setId(String id) {
-		this.id = id;
+	public void setUser_id(String user_id) {
+		this.user_id = user_id;
 	}
 	public String getTitle() {
 		return title;
@@ -43,23 +41,11 @@ public class BoardDTO {
 	public void setPostdate(String postdate) {
 		this.postdate = postdate;
 	}
-	public String getOfile() {
-		return ofile;
+	public String getCategory() {
+		return category;
 	}
-	public void setOfile(String ofile) {
-		this.ofile = ofile;
-	}
-	public String getSfile() {
-		return sfile;
-	}
-	public void setSfile(String sfile) {
-		this.sfile = sfile;
-	}
-	public String getDowncount() {
-		return downcount;
-	}
-	public void setDowncount(String downcount) {
-		this.downcount = downcount;
+	public void setCategory(String category) {
+		this.category = category;
 	}
 	public int getVisitcount() {
 		return visitcount;
