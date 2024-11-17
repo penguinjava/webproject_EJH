@@ -1,97 +1,157 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>회원가입</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <style>
-        body {
-            font-family: 'Nunito', sans-serif;
-            background-color: #f4f7fa;
-            padding: 40px;
-        }
-        .card {
-            max-width: 500px;
-            margin: auto;
-            padding: 20px;
-            border-radius: 8px;
-            background-color: #fff;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        }
-        .card-header {
-            background-color: #007bff;
-            color: white;
-            text-align: center;
-            padding: 20px;
-            font-size: 24px;
-            border-radius: 8px 8px 0 0;
-        }
-        .form-group label {
-            font-weight: 600;
-        }
-        .form-control {
-            border-radius: 5px;
-            border: 1px solid #ddd;
-            padding: 15px;
-            font-size: 16px;
-        }
-        .btn-primary {
-            background-color: #007bff;
-            border-color: #007bff;
-            padding: 12px 20px;
-            width: 100%;
-            font-size: 18px;
-            border-radius: 5px;
-        }
-        .btn-primary:hover {
-            background-color: #0056b3;
-            border-color: #0056b3;
-        }
-        .footer {
-            text-align: center;
-            margin-top: 20px;
-            font-size: 14px;
-        }
-    </style>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="format-detection" content="telephone=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="author" content="">
+<meta name="keywords" content="">
+<meta name="description" content="">
+
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css">
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
+	crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="css/vendor.css">
+<link rel="stylesheet" type="text/css" href="style.css">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+	href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+	rel="stylesheet">
+
 </head>
 <body>
-    <div class="card">
-        <div class="card-header">
-            회원가입
-        </div>
-        <div class="card-body">
-            <form action="register.jsp" method="post">
-                <div class="form-group">
-                    <label for="username">아이디</label>
-                    <input type="text" class="form-control" id="username" name="username" placeholder="아이디를 입력하세요" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">이메일</label>
-                    <input type="email" class="form-control" id="email" name="email" placeholder="이메일을 입력하세요" required>
-                </div>
-                <div class="form-group">
-                    <label for="password">비밀번호</label>
-                    <input type="password" class="form-control" id="password" name="password" placeholder="비밀번호를 입력하세요" required>
-                </div>
-                <div class="form-group">
-                    <label for="confirmPassword">비밀번호 확인</label>
-                    <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="비밀번호를 다시 입력하세요" required>
-                </div>
-                <button type="submit" class="btn btn-primary">가입하기</button>
-            </form>
-        </div>
-    </div>
+	<div class="login-banner bg-primary-subtle block-2"
+		style="background: url('images/login-bg.png') no-repeat; background-position: center; background-size: cover;">
+		<div class="row login-content p-5">
+			<div class="content-wrapper col-md-7 mx-auto text-white">
+				<div class="login-banner bg-primary-subtle block-2"
+					style="background: url('images/login-bg.png') no-repeat; background-position: center; background-size: cover;">
+					<div class="row login-content p-5">
+						<div class="content-wrapper col-md-7 mx-auto text-white">
+							<h3 class="login-title text-center mb-4 text-dark">회원 가입</h3>
+							<!-- 필수 표시 -->
+							<div class="mb-3" style="color: red;">* 표시는는 필수 항목 입니다.</div>
+							<form action="../../mvc2/create.do" method="post" class="p-4">
+								<!-- 아이디 -->
+								<div class="mb-3">
+									<label for="user_id" class="form-label text-dark"> <span
+										style="color: red;">*</span> 회원 ID
+									</label> <input type="text" id="user_id" name="user_id"
+										class="form-control" placeholder="아이디">
+								</div>
+								
+								<!-- 아이디 -->
+								<div class="mb-3">
+									<label for="user_name" class="form-label text-dark"> <span
+										style="color: red;">*</span> 회원 이름
+									</label> <input type="text" id="user_name" name="user_name"
+										class="form-control" placeholder="본인 이름">
+								</div>
+								
+								<!-- 비밀번호 -->
+								<div class="mb-3">
+									<label for="password" class="form-label text-dark"> <span
+										style="color: red;">*</span> 비밀번호
+									</label> <input type="password" id="password" name="password"
+										class="form-control" placeholder="비밀 번호">
+								</div>
 
-    <div class="footer">
-        <p>이미 계정이 있으신가요? <a href="login.jsp">로그인</a></p>
-    </div>
+								<!-- 비밀번호 재확인 -->
+								<div class="mb-3">
+									<label for="confirm_password" class="form-label text-dark">
+										<span style="color: red;">*</span> 비밀번호 확인
+									</label> <input type="password" id="confirm_password"
+										name="re_password" class="form-control"
+										placeholder="비밀번호 다시입력">
+								</div>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+								<!-- 닉네임 -->
+								<div class="mb-3">
+									<label for="nickname" class="form-label text-dark">
+									<span style="color: red;">*</span> 닉네임
+									</label> <input type="text" id="nickname" name="nickname"
+										class="form-control" placeholder="게시판 별명">
+								</div>
+
+								<!-- 이메일 -->
+								<div class="mb-3">
+									<label for="email" class="form-label text-dark">이메일</label>
+									<input type="email" id="email" name="email" class="form-control"
+										placeholder="xxx@xxx.com">
+								</div>
+
+								<!-- 전화 번호 -->
+								<div class="mb-3">
+									<label for="phone_number" class="form-label text-dark">전화번호</label>
+									<input type="text" id="phone_number" name="phone_number"
+										class="form-control" placeholder="010-xxxx-xxxx">
+								</div>
+
+								<!-- 성별 -->
+								<div class="mb-3">
+								<span style="color: red;">*</span>
+									<label for="gender" class="form-label text-dark">성별</label><br/>
+									<input type="radio" id="male" name="gender" value="M"
+										class="form-check-input">
+										<label for="dender" class="form-check-label" style="color: black;">남자</label>
+										<input type="radio" id="female" name="gender" value="W"
+										class="form-check-input">
+										<label for="dender" class="form-check-label" style="color: black;">여자</label>
+								</div>
+
+
+								<!-- 주소 -->
+								<div class="mb-3">
+									<span style="color: red;">*</span>
+    								<label for="address" class="form-label text-dark">사는 지역</label>
+    								<select id="address" name="address" class="form-control">
+        								<option value="서울특별시">서울특별시</option>
+        								<option value="인천광역시">인천광역시</option>
+        								<option value="세종별자치시">세종특별자치시</option>
+        								<option value="울산광역시">울산광역시</option>
+        								<option value="대전광역시">대전광역시</option>
+        								<option value="광주광역시">광주광역시</option>
+        								<option value="부산광역시">부산광역시</option>
+        								<option value="대구광역시">대구광역시</option>
+        								<option value="경기도">경기도</option>
+        								<option value="충청남도">충청남도</option>
+        								<option value="충청북도">충청북도</option>
+        								<option value="전라북도">전라북도</option>
+        								<option value="전라남도">전라남도</option>
+        								<option value="강원도">강원도</option>
+        								<option value="경상북도">경상북도</option>
+        								<option value="경상남도">경상남도</option>
+        								<option value="제주">제주</option>
+        								<!-- 필요에 따라 더 많은 지역 추가 -->
+    								</select>
+								</div>
+
+								<!-- 회원 가입 -->
+								<button type="submit" class="btn btn-primary w-100 mb-3">회원
+									가입</button>
+
+								<!-- 회원 재확인 -->
+								<div class="text-center">
+									<a href="../../index.jsp" class="nav-link text-dark">이미 계정이
+										있으신가요? 로그인</a>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	</div>
 </body>
 </html>
