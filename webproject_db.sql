@@ -38,8 +38,13 @@ create sequence board_seq
 commit;
 
 --member 삭제
-drop table members;
+drop table member;
 drop table board;
 drop table commends;
 
 select * from member;
+select * from board;
+
+-- 삽입
+insert into board(board_id, user_id, content, category)
+values(board_seq.nextval,'test','오늘은 진짜 너무 힘들다 빨리 집에 가고싶다','list');
