@@ -22,6 +22,7 @@ public class LoginController extends HttpServlet{
 		MemberDAO dao = new MemberDAO();
 		HttpSession session = req.getSession();
 		
+		
 		try {
 			String id = req.getParameter("user_id");
 			String pw = req.getParameter("password");
@@ -30,17 +31,21 @@ public class LoginController extends HttpServlet{
 			dto = dao.login(id, pw);
 			dao.close();
 			
+			String[] date = dto.getJoin_date().split(" ");
+			
+			req.setAttribute("join_date", date[0]);
+			req.setAttribute("dto", dto);
+			
 			if(dto.getUser_id() != null) {
 				session.setAttribute("id", id);
 				session.setAttribute("nick", dto.getNickname());
 				JSFunction.alertLocation(resp, "!로그인 성공!", "index.jsp");
-				
-				
-			}else {
-				JSFunction.alertBack(resp,"로그인 실패");
+				req.getRequestDispatcher("index.jsp")
+					.forward(req, resp);
 			}
 		} catch (Exception e) {
 			System.out.println("로그인 오류 발생!");
+			JSFunction.alertBack(resp,"로그인 실패");
 			e.printStackTrace();
 		}
 	}

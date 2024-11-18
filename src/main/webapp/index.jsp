@@ -277,11 +277,11 @@
 
 								<ul
 									class="navbar-nav justify-content-end menu-list list-unstyled d-flex gap-md-3 mb-0">
-									<li class="nav-item active"><a href="../mvc/boardlist.do"
+									<li class="nav-item active"><a href="./boardlist.do"
 										class="nav-link">자유게시판</a></li>
-									<li class="nav-item dropdown"><a href="../mvc/filelist.do"
+									<li class="nav-item dropdown"><a href="./filelist.do"
 										class="nav-link">자료실</a></li>
-									<li class="nav-item"><a href="../mvc/commendlist.do"
+									<li class="nav-item"><a href="./commendlist.do"
 										class="nav-link">Q&A게시판</a></li>
 								</ul>
 
@@ -399,10 +399,10 @@
    				 								<!-- 사용자 정보 -->
     											<h3 class="login-title text-center mb-4">환영합니다, ${nick }님!</h3>
     											<div class="mb-4 text-center">
-        											<p><strong>회원님 이름</strong></p>
-        											<p><strong>회원 가입일</strong></p>
-        											<p><strong>이  메  일</strong></p>
-        											<p><strong>전 화 번 호</strong></p>
+        											<p style="color: black;"><strong>회원님 이름 : </strong>${dto.user_name}</p>
+        											<p style="color: black;"><strong>회원 가입일 : </strong>${join_date}</p>
+        											<p style="color: black;"><strong>이  메  일 : </strong>${dto.email}</p>
+        											<p style="color: black;"><strong>전 화 번 호 : </strong>${dto.phone_number}</p>
     											</div>
     											<!-- 로그아웃 버튼 -->
     											<div class="text-center">

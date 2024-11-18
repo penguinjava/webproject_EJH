@@ -47,7 +47,7 @@ public class CreateController extends HttpServlet{
 		String email = req.getParameter("email");
 		// DB의 디폰트값 유지를 위해서 입력이 없으면 받지않음
 		if (email == null|| email.isEmpty()) {
-			dto.setEmail("등록된 이메일이 없습니다");
+			dto.setEmail("등록된 이메일이 없음");
 		}
 
 		int result = dao.insertMember(dto);
@@ -55,8 +55,9 @@ public class CreateController extends HttpServlet{
 		
 		// 회원가입 성공 여부
 		if (result == 1) {
-			resp.sendRedirect("../index.jsp");
 			System.out.println("회원가입 성공");
+			req.getRequestDispatcher("index.jsp")
+			.forward(req, resp);
 		}else {
 			System.out.println("실패");
 		}
