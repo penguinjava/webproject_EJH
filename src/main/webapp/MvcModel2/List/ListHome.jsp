@@ -298,31 +298,27 @@
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-md-12">
-
 					<div class="banner-blocks">
-
 						<div class="banner-ad large bg-info block-1">
-
 							<div class="swiper main-swiper">
 								<div class="swiper-wrapper">
-
 									<div class="swiper-slide">
 										<div class="row banner-content p-5">
 											<div class="content-wrapper col-md-7">
-												
+											
 												<!-- 게시판 리스트 -->
-												<div class="swiper-slide">
-													<div class="row banner-content p-5">
-														<div class="content-wrapper col-md-7">
-												 <!-- 검색 폼 -->
-            												<form method="GET" class="mb-4">
-                												<div class="input-group">
+												<div class="swiper-slide" style="min-height: 100vh; display: flex; align-items: flex-start; justify-content: center;">
+    												<div class="row banner-content w-100" style="max-width: 1200px; margin: 20px 0;">
+        												<div class="content-wrapper col-md-10 mx-auto">
+            											<!-- 검색 폼 -->
+            												<form method="GET" class="mb-4" style="text-align: center;">
+                												<div class="input-group" style="max-width: 600px; margin: 0 auto;">
                     												<input type="text" name="search" class="form-control" placeholder="검색하기" />
                     												<button type="submit" class="btn btn-outline-primary">검색하기</button>
                 												</div>
             												</form>
 
-            									<!-- 목록 -->
+            												<!-- 목록 -->
             												<table class="table table-striped table-hover table-bordered" style="width: 100%; margin-top: 20px;">
                 												<thead class="thead-dark">
                     												<tr>
@@ -334,56 +330,34 @@
                     												</tr>
                 												</thead>
                 											<tbody>
-                    							<!-- 여기에 게시글 목록 데이터가 들어갑니다. 예시 데이터로 보여줍니다. -->
-                    									<c:choose>
-		                    								<c:when test="${empty boardLists}">
-		                    									<tr>
-		                    										<td colspan="6" align="censer">
-		                    											등록된 게시물이 없습니다.
-		                    										</td>
-		                    									</tr>
-		                    								</c:when>
-		                    								<c:otherwise>
-		                    									<c:forEach items="${boardLists }" var="row"
-		                    										varStatus="loop">
-		                    										<tr>
-		                    											<td>${map.totalCount - loop.index }</td>
-		                    											<td align="left">
-		                    												<a href="../../view.do?board_id=${row.board_id }">
-		                    													${row.title }</a>
-		                    											</td>
-		                    											<td>${row.user_id }</td>
-		                    											<td>${row.visitcount }</td>
-		                    											<td>${row.postdate }</td>
-		                    										</tr>
-		                    									</c:forEach>
-		                    								</c:otherwise>
-                    									</c:choose>
-                												</tbody>
+                    										<c:choose>
+                        										<c:when test="${empty boardLists}">
+                            										<tr>
+                                										<td colspan="6" style="text-align: center;">등록된 게시물이 없습니다.</td>
+                            										</tr>
+                        										</c:when>
+                        									<c:otherwise>
+                            									<c:forEach items="${boardLists}" var="row" varStatus="loop">
+                                									<tr>
+                                    									<td>${map.totalCount - loop.index}</td>
+                                    									<td align="left">
+                                        								<a href="../../view.do?board_id=${row.board_id}">
+                                            								${row.title}
+                                        								</a>
+                                    									</td>
+                                    									<td>${row.user_id}</td>
+                                    									<td>${row.visitcount}</td>
+                                    									<td>${row.postdate}</td>
+                                									</tr>
+                            									</c:forEach>
+                        									</c:otherwise>
+                    										</c:choose>
+                											</tbody>
             												</table>
-													</div>
+        												</div>
+   	 												</div>
 												</div>
-											</div>
-									<div class="swiper-slide">
-										<div class="row banner-content p-5">
-											<div class="content-wrapper col-md-7">
-												<div class="categories mb-3 pb-3">100% natural</div>
-												<h3 class="banner-title">Heinz Tomato Ketchup</h3>
-												<p>Lorem ipsum dolor sit amet, consectetur adipiscing
-													elit. Dignissim massa diam elementum.</p>
-												<a href="#"
-													class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1">Shop
-													Collection</a>
-											</div>
-											<div class="img-wrapper col-md-5">
-												<img src="images/product-thumb-2.png" class="img-fluid">
-											</div>
-										</div>
-									</div>
-								</div>
-
 								<div class="swiper-pagination"></div>
-
 							</div>
 						</div>
 					</div>

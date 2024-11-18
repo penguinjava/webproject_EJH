@@ -194,21 +194,21 @@
 				<div
 					class="col-sm-6 offset-sm-2 offset-md-0 col-lg-5 d-none d-lg-block">
 					<div class="search-bar row bg-light p-2 my-2 rounded-4">
-						<div class="col-md-4 d-none d-md-block">
-							<select class="form-select border-0 bg-transparent">
-								<option>All Categories</option>
-								<option>Groceries</option>
-								<option>Drinks</option>
-								<option>Chocolates</option>
-							</select>
-						</div>
+						<form id="search-form" class="text-center" action="" method="GET">
+							<div class="col-md-4 d-none d-md-block">
+								<select class="form-select border-0 bg-transparent">
+									<option>전체</option>
+									<option>자유게시판</option>
+									<option>자료실</option>
+									<option>Q&A 게시판</option>
+								</select>
+							
+							</div>
 						<div class="col-11 col-md-7">
-							<form id="search-form" class="text-center" action="index.html"
-								method="post">
 								<input type="text" class="form-control border-0 bg-transparent"
 									placeholder="Search for more than 20,000 products" />
-							</form>
 						</div>
+						</form>
 						<div class="col-1">
 							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
 								viewBox="0 0 24 24">
@@ -220,15 +220,11 @@
 
 				<div
 					class="col-sm-8 col-lg-4 d-flex justify-content-end gap-5 align-items-center mt-4 mt-sm-0 justify-content-center justify-content-sm-end">
-					<div class="support-box text-end d-none d-xl-block">
-						<span class="fs-6 text-muted">For Support?</span>
-						<h5 class="mb-0">+980-34984089</h5>
-					</div>
 
 					<ul class="d-flex justify-content-end list-unstyled m-0">
-						<li><a href="MvcModel2/Login/LoginHome.jsp"
-							class="rounded-circle bg-light p-2 mx-1"> <svg width="24"
-									height="24" viewBox="0 0 24 24">
+						<li><a href="./move.do"
+							class="rounded-circle bg-light p-2 mx-1">
+							<svg width="24" height="24" viewBox="0 0 24 24">
 									<use xlink:href="#user"></use></svg>
 						</a></li>
 						<li><a href="#" class="rounded-circle bg-light p-2 mx-1">
@@ -392,7 +388,7 @@
 												<a href="" class="nav-link text-dark">비밀번호 찾기</a>
 											</div>
 											<div class="text-center mt-4">
-												<a href="MvcModel2/Login/LoginHome.jsp" class="btn btn-secondary">회원 가입</a>
+												<a href="./move.do" class="btn btn-secondary">회원 가입</a>
 											</div>
 										</c:when>
 										<c:otherwise>
@@ -449,5 +445,6 @@
 		crossorigin="anonymous"></script>
 	<script src="js/plugins.js"></script>
 	<script src="js/script.js"></script>
+
 </body>
 </html>

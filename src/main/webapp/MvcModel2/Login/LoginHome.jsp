@@ -28,13 +28,6 @@
 	rel="stylesheet">
 
 </head>
-<script>
-    function openNewWindow() {
-        // 새 페이지를 새로운 창으로 열기
-        window.open('yourPage.html', '_blank', 'width=600,height=400,top=100,left=200,resizable=yes');
-    }
-</script>
-
 
 <body>
 	<div class="login-banner bg-primary-subtle block-2"
@@ -54,7 +47,9 @@
 									<label for="user_id" class="form-label text-dark">
 									<span style="color: red;">*</span> 회원 ID</label>
 									<input type="text" id="user_id" name="user_id"
-										class="form-control" placeholder="아이디">
+										class="form-control" placeholder="아이디" 
+										oninput="check('user_id', this.value);">
+									<div id="Message"></div>
 								</div>
 								
 								<!-- 아이디 -->
@@ -158,5 +153,7 @@
 		</div>
 	</div>
 	</div>
+	
+	<script src="js/Check.js"></script>
 </body>
 </html>

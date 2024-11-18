@@ -3,10 +3,21 @@
   <display-name>WebProject_EJH</display-name>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
-    <welcome-file>index.jsp</welcome-file>
+    <!-- <welcome-file>index.jsp</welcome-file> -->
     <welcome-file>index.htm</welcome-file>
     <welcome-file>default.html</welcome-file>
     <welcome-file>default.jsp</welcome-file>
     <welcome-file>default.htm</welcome-file>
   </welcome-file-list>
+  
+  <!-- index 매핑 -->
+  <servlet>
+  	<servlet-name>homePage</servlet-name>
+  	<jsp-file>/index.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>homePage</servlet-name>
+  	<url-pattern>/home.do</url-pattern>
+  </servlet-mapping>
+   
 </web-app>

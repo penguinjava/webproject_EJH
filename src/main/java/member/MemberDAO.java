@@ -91,4 +91,27 @@ public class MemberDAO extends DBConnPool{
 		
 		return dto;
 	}
+	
+	
+	// 중복체크
+	public boolean check(String type, String value) {
+        boolean available = false;
+        // DB 연결 설정
+        String query = "SELECT COUNT(*) "
+        		+ " FROM member WHERE " + type + " = ?";
+        try{
+        	psmt = con.prepareStatement(query);
+            psmt.setString(1, value);
+            rs = psmt.executeQuery();
+
+            if (rs.next()) {
+                int count = rs.getInt(1);
+                available = (count == 0); // 중복되지 않으면 사용 가능
+            }
+        } catch (Exception e) {
+        	System.out.println("중복체크중 에러");
+            e.printStackTrace();
+        }
+        return available;
+    }
 }
