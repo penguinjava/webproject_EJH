@@ -38,5 +38,8 @@ create sequence board_seq
 commit;
 
 --member 삭제
-drop table member;
+drop table members;
+drop table board;
+drop table commends;
+
 select * from member;

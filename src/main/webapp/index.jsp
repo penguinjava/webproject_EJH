@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -365,39 +367,55 @@
 							style="background: url('images/login-bg.png') no-repeat; background-position: center; background-size: cover;">
 							<div class="row login-content p-5">
 								<div class="content-wrapper col-md-7 mx-auto text-white">
-									<h3 class="login-title text-center mb-4">환영합니다</h3>
-									<form action="/login" method="post" class="p-4">
-										<div class="mb-3">
-											<label for="user_id" class="form-label text-dark">회원 ID
+									<c:choose>
+										<c:when test="${ empty id }">
+										<h3 class="login-title text-center mb-4">환영합니다</h3>
+										<!-- form -->
+										<form action="./login.do" method="post" class="p-4">
+											<div class="mb-3">
+												<label for="user_id" class="form-label text-dark">회원 ID
 												</label> <input type="text" id="user_id" name="user_id"
-												class="form-control" placeholder="ID"
-												required>
+													class="form-control" placeholder="ID" required>
+											</div>
+											<div class="mb-3">
+												<label for="password" class="form-label text-dark">회원 비밀번호</label>
+												<input type="password" id="password" name="password"
+														class="form-control" placeholder="PW" required>
+											</div>
+											<button type="submit" class="btn btn-primary w-100 mb-3">로그인</button>
+										</form>
+											<div class="text-center">
+												<a href="" class="nav-link text-dark">아이디 찾기</a>
+											</div>
+											<div class="text-center">
+												<a href="" class="nav-link text-dark">비밀번호 찾기</a>
+											</div>
+											<div class="text-center mt-4">
+												<a href="MvcModel2/Login/LoginHome.jsp" class="btn btn-secondary">회원 가입</a>
+											</div>
+										</c:when>
+										<c:otherwise>
+											<div class="container mt-5">
+   				 								<!-- 사용자 정보 -->
+    											<h3 class="login-title text-center mb-4">환영합니다, ${nick }님!</h3>
+    											<div class="mb-4 text-center">
+        											<p><strong>회원님 이름</strong></p>
+        											<p><strong>회원 가입일</strong></p>
+        											<p><strong>이  메  일</strong></p>
+        											<p><strong>전 화 번 호</strong></p>
+    											</div>
+    											<!-- 로그아웃 버튼 -->
+    											<div class="text-center">
+        											<form action="./logout.do" method="post">
+            											<button type="submit" class="btn btn-danger w-50">로그아웃</button>
+        											</form>
+    											</div>
+											</div>
+										</c:otherwise>
+									</c:choose>
 										</div>
-										<div class="mb-3">
-											<label for="password" class="form-label text-dark">회원 비밀번호</label>
-											<input type="password" id="password" name="password"
-												class="form-control" placeholder="PW"
-												required>
-										</div>
-
-										<button type="submit" class="btn btn-primary w-100 mb-3">로그인</button>
-										<div class="text-center">
-											<a href="" class="nav-link text-dark">아이디 찾기</a>
-										</div>
-										<div class="text-center">
-											<a href="" class="nav-link text-dark">비밀번호 찾기</a>
-										</div>
-
-									</form>
-									<div class="text-center mt-4">
-										<a href="MvcModel2/Login/LoginHome.jsp" class="btn btn-secondary">회원 가입</a>
 									</div>
 								</div>
-							</div>
-						</div>
-
-
-
 						<div class="banner-ad bg-danger block-3"
 							style="background: url('images/ad-image-2.png') no-repeat; background-position: right bottom">
 							<div class="row banner-content p-5">

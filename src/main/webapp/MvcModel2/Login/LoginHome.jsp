@@ -28,6 +28,14 @@
 	rel="stylesheet">
 
 </head>
+<script>
+    function openNewWindow() {
+        // 새 페이지를 새로운 창으로 열기
+        window.open('yourPage.html', '_blank', 'width=600,height=400,top=100,left=200,resizable=yes');
+    }
+</script>
+
+
 <body>
 	<div class="login-banner bg-primary-subtle block-2"
 		style="background: url('images/login-bg.png') no-repeat; background-position: center; background-size: cover;">
@@ -39,13 +47,13 @@
 						<div class="content-wrapper col-md-7 mx-auto text-white">
 							<h3 class="login-title text-center mb-4 text-dark">회원 가입</h3>
 							<!-- 필수 표시 -->
-							<div class="mb-3" style="color: red;">* 표시는는 필수 항목 입니다.</div>
-							<form action="../../mvc2/create.do" method="post" class="p-4">
+							<div class="mb-3" style="color: red;">* 표시는 필수 항목 입니다.</div>
+							<form action="../../create.do" method="post" class="p-4">
 								<!-- 아이디 -->
 								<div class="mb-3">
-									<label for="user_id" class="form-label text-dark"> <span
-										style="color: red;">*</span> 회원 ID
-									</label> <input type="text" id="user_id" name="user_id"
+									<label for="user_id" class="form-label text-dark">
+									<span style="color: red;">*</span> 회원 ID</label>
+									<input type="text" id="user_id" name="user_id"
 										class="form-control" placeholder="아이디">
 								</div>
 								
@@ -59,19 +67,10 @@
 								
 								<!-- 비밀번호 -->
 								<div class="mb-3">
-									<label for="password" class="form-label text-dark"> <span
-										style="color: red;">*</span> 비밀번호
+									<label for="password" class="form-label text-dark">
+									<span style="color: red;">*</span> 비밀번호
 									</label> <input type="password" id="password" name="password"
 										class="form-control" placeholder="비밀 번호">
-								</div>
-
-								<!-- 비밀번호 재확인 -->
-								<div class="mb-3">
-									<label for="confirm_password" class="form-label text-dark">
-										<span style="color: red;">*</span> 비밀번호 확인
-									</label> <input type="password" id="confirm_password"
-										name="re_password" class="form-control"
-										placeholder="비밀번호 다시입력">
 								</div>
 
 								<!-- 닉네임 -->
@@ -91,9 +90,15 @@
 
 								<!-- 전화 번호 -->
 								<div class="mb-3">
+									<span style="color: red;">*</span>
 									<label for="phone_number" class="form-label text-dark">전화번호</label>
-									<input type="text" id="phone_number" name="phone_number"
-										class="form-control" placeholder="010-xxxx-xxxx">
+									<p style="color: black;">010 - 
+									<input type="text" id="f_number" name="f_number" class="form-control" 
+           									placeholder="앞" maxlength="4" oninput="앞자리" 
+           									style="color: black; display: inline-block; width: 70px;"> - 
+   						 			<input type="text" id="s_number" name="s_number" class="form-control" 
+           									placeholder="뒷" maxlength="4" oninput="뒷자리" 
+           									style="color: black; display: inline-block; width: 70px;">
 								</div>
 
 								<!-- 성별 -->

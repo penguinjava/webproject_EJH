@@ -11,30 +11,45 @@ import member.MemberDAO;
 import member.MemberDTO;
 import utils.JSFunction;
 
-@WebServlet("/mvc2/create.do")
+@WebServlet("/create.do")
 public class CreateController extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		MemberDTO dto = new MemberDTO();
+		MemberDAO dao = new MemberDAO();
+		String id = req.getParameter("user_id");
+		String nick = req.getParameter("nickname");
 		
-		dto.setUser_id(req.getParameter("user_id"));
+		//아이디&닉네임 중복 확인
+		if(dao.checkId(id)) {
+			utils.JSFunction.alertBack(resp, "사용 불가능한 아이디");
+			req.setAttribute("user_id", id);
+			req.getRequestDispatcher("../MvcModel2/Login/LoginHome.jsp")
+				.forward(req, resp);
+		}
+		
+		
+		//전화번호 합치기
+		String f = req.getParameter("f_number");
+		String s = req.getParameter("s_number");
+		String number = "010-"+f+"-"+s;
+		
+		dto.setUser_id(id);
 		dto.setUser_name(req.getParameter("user_name"));
 		dto.setPassword(req.getParameter("password"));
-		dto.setNickname(req.getParameter("nickname"));
-		dto.setPhone_number(req.getParameter("phone_number"));
+		dto.setNickname(nick);
+		dto.setPhone_number(number);
 		dto.setGender(req.getParameter("gender"));
 		dto.setAddress(req.getParameter("address"));
 		
 		String email = req.getParameter("email");
-		String phone = req.getParameter("phone_number");
 		// DB의 디폰트값 유지를 위해서 입력이 없으면 받지않음
 		if (email == null|| email.isEmpty()) {
 			dto.setEmail("등록된 이메일이 없습니다");
 		}
-		
-		MemberDAO dao = new MemberDAO();
+
 		int result = dao.insertMember(dto);
 		dao.close();
 		

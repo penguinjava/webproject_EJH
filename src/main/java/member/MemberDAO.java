@@ -34,4 +34,61 @@ public class MemberDAO extends DBConnPool{
 		}
 		return result;
 	}
+	
+	//아이디 중복 체크
+	public boolean checkId(String str) {
+		boolean result = false;
+		
+		String query = "SELECT COUNT(*) FROM member "
+				+ " WHERE user_id=?";
+		
+		try {
+			psmt = con.prepareStatement(query);
+			psmt.setString(1, str);
+			rs = psmt.executeQuery();
+			
+			if(!rs.next()) {
+				result = true;
+			}
+			
+		} catch (Exception e) {
+			System.out.println("중복확인중 에러");
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+	
+	
+	//로그인 인증
+	public MemberDTO login(String user_id, String password) {
+		MemberDTO dto = new MemberDTO();
+		String query = "SELECT * FROM member "
+				+" WHERE user_id=? and password=?";
+		
+		try {
+			psmt = con.prepareStatement(query);
+			psmt.setString(1, user_id);
+			psmt.setString(2, password);
+			rs = psmt.executeQuery();
+			
+			if(rs.next()) {
+				dto.setUser_id(rs.getString("user_id"));
+				dto.setUser_name(rs.getString(2));
+				dto.setPassword(rs.getString("password"));
+				dto.setNickname(rs.getString(4));
+				dto.setEmail(rs.getString(5));
+				dto.setPhone_number(rs.getString(6));
+				dto.setGender(rs.getString(7));
+				dto.setAddress(rs.getString(8));
+				dto.setJoin_date(rs.getString(9));
+			}
+			
+		} catch (Exception e) {
+			System.out.println("로그인 인증 실패");
+			e.printStackTrace();
+		}
+		
+		return dto;
+	}
 }
