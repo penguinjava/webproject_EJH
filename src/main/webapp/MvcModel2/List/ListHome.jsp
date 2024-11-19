@@ -195,10 +195,10 @@
 					<div class="search-bar row bg-light p-2 my-2 rounded-4">
 						<div class="col-md-4 d-none d-md-block">
 							<select class="form-select border-0 bg-transparent">
-								<option>All Categories</option>
-								<option>Groceries</option>
-								<option>Drinks</option>
-								<option>Chocolates</option>
+								<option>전체</option>
+									<option>자유게시판</option>
+									<option>자료실</option>
+									<option>Q&A 게시판</option>
 							</select>
 						</div>
 						<div class="col-11 col-md-7">
@@ -295,22 +295,8 @@
 
 	<section class="py-3"
 		style="background-image: url('images/background-pattern.jpg'); background-repeat: no-repeat; background-size: cover;">
-		<div class="container-fluid">
-			<div class="row">
-				<div class="col-md-12">
-					<div class="banner-blocks">
-						<div class="banner-ad large bg-info block-1">
-							<div class="swiper main-swiper">
-								<div class="swiper-wrapper">
-									<div class="swiper-slide">
-										<div class="row banner-content p-5">
-											<div class="content-wrapper col-md-7">
-											
-												<!-- 게시판 리스트 -->
-												<div class="swiper-slide" style="min-height: 100vh; display: flex; align-items: flex-start; justify-content: center;">
-    												<div class="row banner-content w-100" style="max-width: 1200px; margin: 20px 0;">
-        												<div class="content-wrapper col-md-10 mx-auto">
-            											<!-- 검색 폼 -->
+		
+            											<!-- 검색 폼 임시 -->
             												<form method="GET" class="mb-4" style="text-align: center;">
                 												<div class="input-group" style="max-width: 600px; margin: 0 auto;">
                     												<input type="text" name="search" class="form-control" placeholder="검색하기" />
@@ -318,8 +304,15 @@
                 												</div>
             												</form>
 
+															<!-- 글쓰기 작성 -->
+															<form action="./listWrite.do" method="get">
+            													<button type="submit" class="btn btn-danger"
+            															style="width: 200px;">글 작성하기</button>
+        													</form>
+
             												<!-- 목록 -->
-            												<table class="table table-striped table-hover table-bordered" style="width: 100%; margin-top: 20px;">
+            												<table class="table table-striped table-hover table-bordered" 
+            														style="width: 90%; margin: 20px auto; font-size: 18px;">
                 												<thead class="thead-dark">
                     												<tr>
                         												<th style="white-space: nowrap;">번호</th>
@@ -354,18 +347,9 @@
                     										</c:choose>
                 											</tbody>
             												</table>
-        												</div>
-   	 												</div>
-												</div>
-								<div class="swiper-pagination"></div>
-							</div>
-						</div>
-					</div>
-					<!-- / Banner Blocks -->
-
-				</div>
-			</div>
-		</div>
+        																					
+									
+										
 	</section>
 	<script src="js/jquery-1.11.0.min.js"></script>
 	<script

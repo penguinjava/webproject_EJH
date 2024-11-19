@@ -20,15 +20,16 @@ public class LogoutController extends HttpServlet{
 		HttpSession session = req.getSession();
 		
 		String id = (String) session.getAttribute("id");
+		
 		try {
 			if(id != null) {
 				session.removeAttribute("id");
 				session.removeAttribute("nick");
 				
 				session.invalidate();
-				JSFunction.alertLocation(resp, "로그아웃 성공!", "index.jsp");
-				req.getRequestDispatcher("index.jsp")
-				.forward(req, resp);
+				
+				JSFunction.alertLocation(resp, "!로그아웃 성공!", "home.do");
+			
 			}
 		} catch (Exception e) {
 			System.out.println("로그아웃 에러발생");

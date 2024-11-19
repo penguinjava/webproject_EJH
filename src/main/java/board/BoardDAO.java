@@ -66,4 +66,26 @@ public class BoardDAO extends DBConnPool{
 		
 		return board;
 	}
+	
+	
+	// 글쓰기 하고 DB 저장
+	public int insertboard(BoardDTO dto) {
+        int result = 0;
+        try {
+            String query = "INSERT INTO board ( "
+                         + " board_id, user_id, title, content, category) "
+                         + " VALUES ( "
+                         + " seq_board_num.NEXTVAL,?,?,?,'list')";
+            psmt = con.prepareStatement(query);
+            psmt.setString(1, dto.getUser_id());
+            psmt.setString(2, dto.getTitle());
+            psmt.setString(3, dto.getContent());
+            result = psmt.executeUpdate();
+        }
+        catch (Exception e) {
+            System.out.println("게시물 입력 중 예외 발생");
+            e.printStackTrace();
+        }
+        return result;
+    }
 }

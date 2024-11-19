@@ -3,7 +3,7 @@ package board;
 public class BoardDTO {
 	//board 필드 생성
 	private String board_id; // board 식별아이디
-	private String user_id; // member 식별아이디
+	private String user_id; // member id 식별
 	private String title;
 	private String content;
 	private String postdate; // 날짜

@@ -222,7 +222,7 @@
 					class="col-sm-8 col-lg-4 d-flex justify-content-end gap-5 align-items-center mt-4 mt-sm-0 justify-content-center justify-content-sm-end">
 
 					<ul class="d-flex justify-content-end list-unstyled m-0">
-						<li><a href="./move.do"
+						<li><a href="./login.do"
 							class="rounded-circle bg-light p-2 mx-1">
 							<svg width="24" height="24" viewBox="0 0 24 24">
 									<use xlink:href="#user"></use></svg>
@@ -388,7 +388,7 @@
 												<a href="" class="nav-link text-dark">비밀번호 찾기</a>
 											</div>
 											<div class="text-center mt-4">
-												<a href="./move.do" class="btn btn-secondary">회원 가입</a>
+												<a href="./create.do" class="btn btn-secondary">회원 가입</a>
 											</div>
 										</c:when>
 										<c:otherwise>
@@ -404,7 +404,8 @@
     											<!-- 로그아웃 버튼 -->
     											<div class="text-center">
         											<form action="./logout.do" method="post">
-            											<button type="submit" class="btn btn-danger w-50">로그아웃</button>
+            											<button type="submit" class="btn btn-danger w-50"
+            											 name="indexOut">로그아웃</button>
         											</form>
     											</div>
 											</div>

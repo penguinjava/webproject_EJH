@@ -7,6 +7,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import jakarta.servlet.http.HttpSessionEvent;
 import member.MemberDAO;
 import member.MemberDTO;
 import utils.JSFunction;
@@ -15,20 +17,29 @@ import utils.JSFunction;
 public class CreateController extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 
+	// 페이지 이동
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		try {
+				req.getRequestDispatcher("./MvcModel2/Login/CreateHome.jsp")
+					.forward(req, resp);
+			
+			
+		}catch(Exception e) {
+			System.out.println("이동중 오류 발생");
+			e.printStackTrace();
+		}
+	
+	}
+	
+	// 실제 작성
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		MemberDTO dto = new MemberDTO();
 		MemberDAO dao = new MemberDAO();
 		String id = req.getParameter("user_id");
 		String nick = req.getParameter("nickname");
-		
-		//아이디&닉네임 중복 확인
-		if(dao.checkId(id)) {
-			utils.JSFunction.alertBack(resp, "사용 불가능한 아이디");
-			req.setAttribute("user_id", id);
-			req.getRequestDispatcher("../MvcModel2/Login/LoginHome.jsp")
-				.forward(req, resp);
-		}
 		
 		
 		//전화번호 합치기

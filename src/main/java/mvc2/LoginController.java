@@ -17,11 +17,32 @@ public class LoginController extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 	
 	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		HttpSession session = req.getSession();
+		MemberDTO dto = new MemberDTO();
+		
+		try {
+			if (session.getAttribute("id") == null) {
+				JSFunction.alertLocation(resp, "로그인 하세요", "./MvcModel2/Login/LoginHome.jsp");
+				req.getRequestDispatcher("./MvcModel2/Login/LoginHome.jsp")
+				.forward(req, resp);
+			}else {
+				req.setAttribute("dto", dto);
+				req.getRequestDispatcher("./MvcModel2/Login/LoginHome.jsp")
+				.forward(req, resp);
+			}
+			
+		}catch(Exception e) {
+			System.out.println("이동중 오류 발생");
+			e.printStackTrace();
+		}
+	}
+	
+	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		MemberDTO dto = new MemberDTO();
 		MemberDAO dao = new MemberDAO();
 		HttpSession session = req.getSession();
-		
 		
 		try {
 			String id = req.getParameter("user_id");
