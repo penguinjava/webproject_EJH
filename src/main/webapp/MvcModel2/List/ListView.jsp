@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="jakarta.tags.core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,7 +14,14 @@
         <td>작성자</td> <td>${dto.nickname }</td>
     </tr>
     <tr>
-       	<td>작성일</td> <td>${dto.postdate }</td>
+    	<c:choose>
+    		<c:when test="${ymd eq today}">
+       			<td>작성일</td> <td>${ymd }</td>
+       		</c:when>
+       		<c:otherwise>
+       			<td>작성일</td> <td>${time }</td>
+       		</c:otherwise>
+       	</c:choose>
         <td>조회수</td> <td>${dto.visitcount }</td>
     </tr>
     <tr>

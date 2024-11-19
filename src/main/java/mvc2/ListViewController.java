@@ -1,6 +1,7 @@
 package mvc2;
 
 import java.io.IOException;
+import java.time.LocalDate;
 
 import board.BoardDAO;
 import board.BoardDTO;
@@ -28,11 +29,20 @@ public class ListViewController extends HttpServlet{
 		//DB반납
 		dao.close();
 		
+		String[] date = dto.getPostdate().split(" ");
+		
+		req.setAttribute("ymd", date[0]);
+		req.setAttribute("time", date[1]);
+		req.setAttribute("dto", dto);
+		
+		LocalDate today = LocalDate.now();
+		
 		//게시글 내용 줄바꿈처리
 		dto.setContent(dto.getContent()
 					.replaceAll("\r\n", "<br/>"));
 		
 		//포워드
+		req.setAttribute("today", today);
 		req.setAttribute("dto", dto);
 		req.getRequestDispatcher("./MvcModel2/List/ListView.jsp")
 				.forward(req, resp);

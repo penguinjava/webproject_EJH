@@ -1,6 +1,7 @@
 package mvc2;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -36,6 +37,17 @@ public class ListController extends HttpServlet{
 				dao.close();
 				
 				map.put("totalCount", totalCount);
+				
+				//날짜 구분
+				String postdate = (String)map.get("postdate");
+				
+				String[] date = postdate.split(" ");
+				
+				req.setAttribute("ymd", date[0]);
+				req.setAttribute("time", date[1]);
+				
+				LocalDate today = LocalDate.now();
+				req.setAttribute("today", today);
 				
 				req.setAttribute("boardLists", boardLists);
 				req.setAttribute("map", map);

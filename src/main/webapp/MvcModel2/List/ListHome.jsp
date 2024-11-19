@@ -338,7 +338,14 @@
                                     									</td>
                                     									<td>${row.user_id}</td>
                                     									<td>${row.visitcount}</td>
-                                    									<td>${row.postdate}</td>
+                                    									<c:choose>
+    																		<c:when test="${ymd eq today}">
+       																			<td>${ymd }</td>
+       																		</c:when>
+       																		<c:otherwise>
+       																				<td>${time }</td>
+       																		</c:otherwise>
+       																	</c:choose>
                                 									</tr>
                             									</c:forEach>
                         									</c:otherwise>
