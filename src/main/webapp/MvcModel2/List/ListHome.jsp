@@ -332,7 +332,7 @@
                                 									<tr>
                                     									<td>${map.totalCount - loop.index}</td>
                                     									<td align="left">
-                                        								<a href="../../view.do?board_id=${row.board_id}">
+                                        								<a href="./listView.do?board_id=${row.board_id}">
                                             								${row.title}
                                         								</a>
                                     									</td>

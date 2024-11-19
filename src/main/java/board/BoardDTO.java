@@ -9,6 +9,8 @@ public class BoardDTO {
 	private String postdate; // 날짜
 	private String category; //게시물별 검색
 	private int visitcount;
+	//member 테이블의 nickname;
+	private String nickname;
 	
 	//get&set 설정
 	public String getBoard_id() {
@@ -52,5 +54,11 @@ public class BoardDTO {
 	}
 	public void setVisitcount(int visitcount) {
 		this.visitcount = visitcount;
+	}
+	public String getNickname() {
+		return nickname;
+	}
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
 	}
 }

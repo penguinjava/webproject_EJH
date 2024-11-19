@@ -1,5 +1,6 @@
 package board;
 
+import java.sql.PreparedStatement;
 import java.util.List;
 import java.util.Map;
 import java.util.Vector;
@@ -91,11 +92,53 @@ public class BoardDAO extends DBConnPool{
 	
 	
 	// 글쓰기 뷰를 select 식별
-	public BoardDTO listView(String boar_id) {
+	public BoardDTO listView(String board_id) {
 		BoardDTO dto = new BoardDTO();
 		
-		String query = "SELECT "
 		
+		String query = "select B.*, M.nickname "
+				+ " from board B inner join member M "
+				+ "    on B.user_id=M.user_id "
+				+ " where board_id=? ";
+		
+		// 인파라미터 설정
+		try {
+			psmt = con.prepareStatement(query);
+			psmt.setString(1, board_id);
+			rs = psmt.executeQuery();
+			
+			//board_id의 결과는 하나만 나옴
+			if (rs.next()) {
+				dto.setBoard_id(rs.getString(1));
+				dto.setUser_id(rs.getString(2));
+				dto.setTitle(rs.getString(3));
+				dto.setContent(rs.getString(4));
+				dto.setPostdate(rs.getString(5));
+				dto.setVisitcount(rs.getInt(6));
+				dto.setCategory(rs.getString(7));
+				dto.setNickname(rs.getString(8));
+			}
+		} catch (Exception e) {
+			System.out.println("뷰에에 접근중 오류.");
+			e.printStackTrace();
+		}
 		return dto;
+	}
+	
+	
+	//조회수 늘리기
+	public void updateVisit(String board_id	) {
+		String query = "UPDATE board SET "
+				+ " visitcount=visitcount+1 "
+				+ " WHERE board_id=?";
+		
+		try {
+			psmt = con.prepareStatement(query);
+			psmt.setString(1, board_id);
+			psmt.executeUpdate();
+		} catch (Exception e) {
+			System.out.println("조회수 늘리기중 오류");
+			e.printStackTrace();
+		}
 	}
 }
