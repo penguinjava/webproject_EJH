@@ -305,10 +305,8 @@
             												</form>
 
 															<!-- 글쓰기 작성 -->
-															<form action="./listWrite.do" method="get">
-            													<button type="submit" class="btn btn-danger"
-            															style="width: 200px;">글 작성하기</button>
-        													</form>
+            													<button type="button" class="btn btn-danger"
+            															style="width: 200px;" onclick="location.href='./listWrite.do';">글 작성하기</button>
 
             												<!-- 목록 -->
             												<table class="table table-striped table-hover table-bordered" 

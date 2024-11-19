@@ -75,7 +75,7 @@ public class BoardDAO extends DBConnPool{
             String query = "INSERT INTO board ( "
                          + " board_id, user_id, title, content, category) "
                          + " VALUES ( "
-                         + " seq_board_num.NEXTVAL,?,?,?,'list')";
+                         + " board_seq.nextval,?,?,?,'list')";
             psmt = con.prepareStatement(query);
             psmt.setString(1, dto.getUser_id());
             psmt.setString(2, dto.getTitle());
@@ -88,4 +88,14 @@ public class BoardDAO extends DBConnPool{
         }
         return result;
     }
+	
+	
+	// 글쓰기 뷰를 select 식별
+	public BoardDTO listView(String boar_id) {
+		BoardDTO dto = new BoardDTO();
+		
+		String query = "SELECT "
+		
+		return dto;
+	}
 }

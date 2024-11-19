@@ -16,7 +16,7 @@ create table member(
 --board테이블 작성
 create table board(
     board_id number not null,
-    user_id VARCHAR2(50) not null,
+    nickname VARCHAR2(250) not null,
     title VARCHAR2(100) DEFAULT
     '제목 없음',
     content VARCHAR2(2000) not null,
@@ -46,5 +46,5 @@ select * from member;
 select * from board;
 
 -- 삽입
-insert into board(board_id, user_id, content, category)
+insert into board(board_id, nickname, content, category)
 values(board_seq.nextval,'test','오늘은 진짜 너무 힘들다 빨리 집에 가고싶다','list');

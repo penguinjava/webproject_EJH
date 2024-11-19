@@ -16,10 +16,10 @@
     <link rel="stylesheet" href="css/vendor.css">
     <link rel="stylesheet" href="style.css">
 </head>
-<body> 
+<body>  
     <div class="container mt-5">
         <h2 class="text-center mb-4">게시글 작성</h2>
-        <form action="./writePost.do" method="post">
+        <form action="./listWrite.do" method="post">
             <div class="mb-3">
                 <label for="title" class="form-label">제목</label>
                 <input type="text" class="form-control" id="title" name="title" placeholder="제목을 입력하세요" required>
@@ -38,7 +38,7 @@
             </div>
             <div class="text-center">
                 <button type="submit" class="btn btn-primary">글 작성</button>
-                <a href="./boardlist.do" class="btn btn-secondary">취소</a>
+                <a href="./listWrite.do" class="btn btn-secondary">취소</a>
             </div>
         </form>
     </div>

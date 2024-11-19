@@ -26,7 +26,8 @@ public class ListWriteController extends HttpServlet{
 			JSFunction.alertLocation(resp, "로그인 하세요",
 					"./login.do");
 		}else {
-			req.getRequestDispatcher("./McvModel2/List/ListWrite.jsp");
+			req.getRequestDispatcher("./MvcModel2/List/ListWrite.jsp")
+				.forward(req, resp);
 		}	
 	}
 	
@@ -51,7 +52,7 @@ public class ListWriteController extends HttpServlet{
 			
 			// 성공 or 실패?
 			if (result == 1) {  // 글쓰기 성공
-				resp.sendRedirect("./MvcModel2/List/ListHome.jsp");
+				resp.sendRedirect("./boardlist.do");
 			}
 			else {  // 글쓰기 실패
 				JSFunction.alertLocation(resp, "글쓰기에 실패했습니다.",
