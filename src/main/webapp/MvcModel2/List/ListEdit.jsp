@@ -20,15 +20,14 @@
     <div class="container mt-5">
         <h2 class="text-center mb-4">게시글 작성</h2>
         <form action="./listEdit.do" method="post">
+        <input type="hidden" name="board_id" value="${param.board_id}" />
             <div class="mb-3">
                 <label for="title" class="form-label">제목</label>
                 <input type="text" class="form-control" id="title" name="title" value="${dto.title }" required>
             </div>
             <div class="mb-3">
                 <label for="content" class="form-label">내용</label>
-                <textarea class="form-control" id="content" name="content" rows="10" required>
-                	${dto.content }
-                </textarea>
+                <textarea class="form-control" id="content" name="content" rows="10" required>${dto.content }</textarea>
             </div>
             <div class="mb-3">
                 <label for="boardType" class="form-label">게시판 종류</label>
