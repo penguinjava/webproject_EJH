@@ -1,6 +1,7 @@
 package mvc2List;
 
 import java.io.IOException;
+import java.time.LocalDate;
 
 import board.BoardDAO;
 import board.BoardDTO;
@@ -49,6 +50,9 @@ public class ListWriteController extends HttpServlet{
 			//글쓰기
 			int result = dao.insertboard(dto);
 			dao.close();
+			
+			
+			req.setAttribute("dto", dto);
 			
 			// 성공 or 실패?
 			if (result == 1) {  // 글쓰기 성공

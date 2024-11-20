@@ -37,7 +37,7 @@ public class ListEditController extends HttpServlet{
 		//본인확인은 JSP에서 EL로 처리
 		
 		req.setAttribute("dto", dto);
-		req.getRequestDispatcher("../MvcModel2/List/ListEdit.jsp")
+		req.getRequestDispatcher("./MvcModel2/List/ListEdit.jsp")
 			.forward(req, resp);
 	}
 	
@@ -73,10 +73,10 @@ public class ListEditController extends HttpServlet{
 		
 		// 성공시 해당 해당 페이지로
 		if (result == 1) {
-			resp.sendRedirect("./listView.do?board_id="+board_id);
+			resp.sendRedirect("./listView.do?board_id="+dto.getBoard_id());
 		}else {
 			// 수정 적용 안된 board_id로 이동
-			JSFunction.alertLocation(resp, "세션 끊임",
+			JSFunction.alertLocation(resp, "수정하기 실패",
 						"./listView.do?board_id="+board_id);
 		}
 	}

@@ -168,8 +168,8 @@ public class BoardDAO extends DBConnPool{
 	public int updateList(BoardDTO dto) {
 		int result = 0;
 		String query = "UPDATE board "
-				+ " SET title=?, content=?, "
-				+ " WHERE board_id=? and user_id_?";
+				+ " SET title=?, content=? "
+				+ " WHERE board_id=? and user_id=?";
 		
 		try {
 			psmt = con.prepareStatement(query);

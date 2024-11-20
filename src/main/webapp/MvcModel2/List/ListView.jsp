@@ -336,11 +336,11 @@
 					<c:if test="${dto.nickname eq nick }">
 					<td>
 					<button type="button" class="btn btn-danger" style="width: 200px; margin-right: 10px;"
-        				onclick="location.href='./listDelete.do';">글 삭제하기</button>
+        				onclick="location.href='./listDelete.do?board_id=${dto.board_id }';">글 삭제하기</button>
         			</td>
         			<td>
         			<button type="button" class="btn btn-danger" style="width: 200px; margin-right: 10px;"
-        				onclick="location.href='./listEdit.do';">글 수정하기</button>
+        				onclick="location.href='./listEdit.do?board_id=${dto.board_id }';">글 수정하기</button>
         			</td>
         			</c:if>
         			<td>
