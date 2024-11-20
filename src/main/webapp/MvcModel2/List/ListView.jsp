@@ -333,14 +333,14 @@
 		<table class="table table-striped table-hover table-bordered"
 			style="width: 90%; margin: 20px auto; font-size: 18px;">
 				<tr>
-					<c:if test="${dto.user_id eq id }">
+					<c:if test="${dto.nickname eq nick }">
 					<td>
 					<button type="button" class="btn btn-danger" style="width: 200px; margin-right: 10px;"
-        				onclick="location.href='./listEdit.do';">글 삭제하기</button>
+        				onclick="location.href='./listDelete.do';">글 삭제하기</button>
         			</td>
         			<td>
         			<button type="button" class="btn btn-danger" style="width: 200px; margin-right: 10px;"
-        				onclick="location.href='./listDelete.do';">글 수정하기</button>
+        				onclick="location.href='./listEdit.do';">글 수정하기</button>
         			</td>
         			</c:if>
         			<td>
