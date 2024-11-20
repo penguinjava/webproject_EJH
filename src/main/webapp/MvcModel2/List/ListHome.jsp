@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core"%>
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -196,9 +196,9 @@
 						<div class="col-md-4 d-none d-md-block">
 							<select class="form-select border-0 bg-transparent">
 								<option>전체</option>
-									<option>자유게시판</option>
-									<option>자료실</option>
-									<option>Q&A 게시판</option>
+								<option>자유게시판</option>
+								<option>자료실</option>
+								<option>Q&A 게시판</option>
 							</select>
 						</div>
 						<div class="col-11 col-md-7">
@@ -295,66 +295,66 @@
 
 	<section class="py-3"
 		style="background-image: url('images/background-pattern.jpg'); background-repeat: no-repeat; background-size: cover;">
-		
-            											<!-- 검색 폼 임시 -->
-            												<form method="GET" class="mb-4" style="text-align: center;">
-                												<div class="input-group" style="max-width: 600px; margin: 0 auto;">
-                    												<input type="text" name="search" class="form-control" placeholder="검색하기" />
-                    												<button type="submit" class="btn btn-outline-primary">검색하기</button>
-                												</div>
-            												</form>
 
-															<!-- 글쓰기 작성 -->
-            													<button type="button" class="btn btn-danger"
-            															style="width: 200px;" onclick="location.href='./listWrite.do';">글 작성하기</button>
+		<!-- 검색 폼 임시 -->
+<!--		<form method="GET" class="mb-4" style="text-align: center;">
+			<div class="input-group" style="max-width: 600px; margin: 0 auto;">
+				<input type="text" name="search" class="form-control"
+					placeholder="검색하기" />
+				<button type="submit" class="btn btn-outline-primary">검색하기</button>
+			</div>
+		</form>
+-->
+		<!-- 글쓰기 작성 버튼 -->
+		<table class="table table-striped table-hover table-bordered"
+			style="width: 90%; margin: 20px auto; font-size: 18px;">
+				<tr>
+					<th style="white-space: nowrap;">
+					<button type="button" class="btn btn-danger" style="width: 200px; margin-right: 10px;"
+        				onclick="location.href='./listWrite.do';">글 작성하기</button>
+        			</th>
+        		</tr>
+        </table>
+        
+		<!-- 목록 -->
+		<table class="table table-striped table-hover table-bordered"
+			style="width: 90%; margin: 20px auto; font-size: 18px;">
+			<thead class="thead-dark">
+				<tr>
+					<th style="white-space: nowrap;">번호</th>
+					<th style="white-space: nowrap;">제목</th>
+					<th style="white-space: nowrap;">작성자</th>
+					<th style="white-space: nowrap;">조회수</th>
+					<th style="white-space: nowrap;">작성일</th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:choose>
+					<c:when test="${empty boardLists}">
+						<tr>
+							<td colspan="6" style="text-align: center;">등록된 게시물이 없습니다.</td>
+						</tr>
+					</c:when>
+					<c:otherwise>
+						<c:forEach items="${boardLists}" var="row" varStatus="loop">
+							<tr>
+								<td>${map.totalCount - loop.index}</td>
+								<td align="left"><a
+									href="./listView.do?board_id=${row.board_id}"> ${row.title}
+								</a></td>
+								<td>${row.user_id}</td>
+								<td>${row.visitcount}</td>
+								<!-- 여기 날짜 -->
+								<td>${row.postdate }</td>
+							</tr>
+						</c:forEach>
+					</c:otherwise>
+				</c:choose>
+			</tbody>
+		</table>
 
-            												<!-- 목록 -->
-            												<table class="table table-striped table-hover table-bordered" 
-            														style="width: 90%; margin: 20px auto; font-size: 18px;">
-                												<thead class="thead-dark">
-                    												<tr>
-                        												<th style="white-space: nowrap;">번호</th>
-                        												<th style="white-space: nowrap;">제목</th>
-                        												<th style="white-space: nowrap;">작성자</th>
-                        												<th style="white-space: nowrap;">조회수</th>
-                        												<th style="white-space: nowrap;">작성일</th>
-                    												</tr>
-                												</thead>
-                											<tbody>
-                    										<c:choose>
-                        										<c:when test="${empty boardLists}">
-                            										<tr>
-                                										<td colspan="6" style="text-align: center;">등록된 게시물이 없습니다.</td>
-                            										</tr>
-                        										</c:when>
-                        									<c:otherwise>
-                            									<c:forEach items="${boardLists}" var="row" varStatus="loop">
-                                									<tr>
-                                    									<td>${map.totalCount - loop.index}</td>
-                                    									<td align="left">
-                                        								<a href="./listView.do?board_id=${row.board_id}">
-                                            								${row.title}
-                                        								</a>
-                                    									</td>
-                                    									<td>${row.user_id}</td>
-                                    									<td>${row.visitcount}</td>
-                                    									<c:choose>
-    																		<c:when test="${ymd eq today}">
-       																			<td>${ymd }</td>
-       																		</c:when>
-       																		<c:otherwise>
-       																				<td>${time }</td>
-       																		</c:otherwise>
-       																	</c:choose>
-                                									</tr>
-                            									</c:forEach>
-                        									</c:otherwise>
-                    										</c:choose>
-                											</tbody>
-            												</table>
-        																					
-									
-										
+
+
 	</section>
 	<script src="js/jquery-1.11.0.min.js"></script>
 	<script

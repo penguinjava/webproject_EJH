@@ -39,15 +39,18 @@ public class ListController extends HttpServlet{
 				map.put("totalCount", totalCount);
 				
 				//날짜 구분
-				String postdate = (String)map.get("postdate");
-				
-				String[] date = postdate.split(" ");
-				
-				req.setAttribute("ymd", date[0]);
-				req.setAttribute("time", date[1]);
-				
 				LocalDate today = LocalDate.now();
-				req.setAttribute("today", today);
+				System.out.println("오늘의 날짜 : "+today.toString());
+				
+				for (BoardDTO list : boardLists) {
+					String[] postdate = list.getPostdate().split(" ");
+					System.out.println("날짜="+postdate[0]+"/시간"+postdate[1]);
+					if(postdate[0].equals(today.toString())) {
+						list.setPostdate("오늘 "+postdate[1]);
+					}else {
+						list.setPostdate(postdate[0]);
+					}
+				}
 				
 				req.setAttribute("boardLists", boardLists);
 				req.setAttribute("map", map);

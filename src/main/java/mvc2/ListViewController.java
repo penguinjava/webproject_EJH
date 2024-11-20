@@ -30,12 +30,19 @@ public class ListViewController extends HttpServlet{
 		dao.close();
 		
 		String[] date = dto.getPostdate().split(" ");
+		System.out.println(date);
+		//날짜 구분
+		LocalDate today = LocalDate.now();
+		System.out.println("오늘의 날짜 : "+today.toString());
 		
-		req.setAttribute("ymd", date[0]);
-		req.setAttribute("time", date[1]);
+		if(date[0].equals(today.toString())) {
+			dto.setPostdate("오늘 "+date[1]);
+		}else {
+			dto.setPostdate(date[0]);
+		}
+		
 		req.setAttribute("dto", dto);
 		
-		LocalDate today = LocalDate.now();
 		
 		//게시글 내용 줄바꿈처리
 		dto.setContent(dto.getContent()
