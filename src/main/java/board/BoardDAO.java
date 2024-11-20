@@ -153,13 +153,37 @@ public class BoardDAO extends DBConnPool{
 			
 			psmt = con.prepareStatement(query);
 			psmt.setString(1, board_id);
-			//삭제한내용 적용
+			
+			//삭제 실행
 			result = psmt.executeUpdate();
 		}catch (Exception e) {
 			System.out.println("게시물 삭제중 오류");
 			e.printStackTrace();
 		}
+		return result;
+	}
+	
+	
+	//게시판 수정하기
+	public int updateList(BoardDTO dto) {
+		int result = 0;
+		String query = "UPDATE board "
+				+ " SET title=?, content=?, "
+				+ " WHERE board_id=? and user_id_?";
 		
+		try {
+			psmt = con.prepareStatement(query);
+			psmt.setString(1, dto.getTitle());			
+			psmt.setString(2, dto.getContent());			
+			psmt.setString(3, dto.getBoard_id());			
+			psmt.setString(4, dto.getUser_id());
+			
+			// 업데이트 실행
+			result = psmt.executeUpdate();
+		} catch (Exception e) {
+			System.out.println("수정중 오류 발생");
+			e.printStackTrace();
+		}
 		
 		return result;
 	}
