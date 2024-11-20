@@ -141,4 +141,26 @@ public class BoardDAO extends DBConnPool{
 			e.printStackTrace();
 		}
 	}
+	
+	//게시판 삭제하기
+	public int deleteList(String board_id) {
+		int result = 0;
+		
+		//삭제는 제약조건이 걸려있어서 쿼리부터 예외처리한다.
+		try {
+			String query = "DELETE FROM board "
+					+ "WHERE board_id=?";
+			
+			psmt = con.prepareStatement(query);
+			psmt.setString(1, board_id);
+			//삭제한내용 적용
+			result = psmt.executeUpdate();
+		}catch (Exception e) {
+			System.out.println("게시물 삭제중 오류");
+			e.printStackTrace();
+		}
+		
+		
+		return result;
+	}
 }

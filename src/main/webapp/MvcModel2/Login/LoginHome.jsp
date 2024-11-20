@@ -55,11 +55,12 @@
     						<!-- 로그아웃 버튼 -->
                         <h3 class="text-center mb-4">환영합니다, ${nick}님!</h3>
                         
-    						<div class="text-center">
-        						<form action="./logout.do" method="post">
-            						<button type="submit" class="btn btn-danger w-50" name="createOut">로그아웃</button>
-        						</form>
-    						</div>
+    						<div class="text-center" style="display: flex; justify-content: center; gap: 10px;">
+    							<form action="./logout.do" method="post">
+        							<button type="submit" class="btn btn-danger" name="indexOut">로그아웃</button>
+    							</form>
+    								<button type="button" class="btn btn-danger" onclick="history.back();">돌아가기</button>
+							</div>
                     </c:otherwise>
                 </c:choose>
 				</div>
