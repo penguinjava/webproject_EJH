@@ -297,14 +297,14 @@
 		style="background-image: url('images/background-pattern.jpg'); background-repeat: no-repeat; background-size: cover;">
 
 		<!-- 검색 폼 임시 -->
-<!--		<form method="GET" class="mb-4" style="text-align: center;">
+		<form method="GET" class="mb-4" style="text-align: center;">
 			<div class="input-group" style="max-width: 600px; margin: 0 auto;">
 				<input type="text" name="search" class="form-control"
 					placeholder="검색하기" />
 				<button type="submit" class="btn btn-outline-primary">검색하기</button>
 			</div>
 		</form>
--->
+
 		<!-- 글쓰기 작성 버튼 -->
 		<table class="table table-striped table-hover table-bordered"
 			style="width: 90%; margin: 20px auto; font-size: 18px;">

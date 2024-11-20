@@ -167,7 +167,7 @@
 				<h4 class="d-flex justify-content-between align-items-center mb-3">
 					<span class="text-primary">Search</span>
 				</h4>
-				<form role="search" action="index.html" method="get"
+				<form role="search" action="./home.do" method="get"
 					class="d-flex mt-3 gap-0">
 					<input class="form-control rounded-start rounded-0 bg-light"
 						type="email" placeholder="What are you looking for?"
@@ -202,7 +202,7 @@
 							</select>
 						</div>
 						<div class="col-11 col-md-7">
-							<form id="search-form" class="text-center" action="index.html"
+							<form id="search-form" class="text-center" action=""
 								method="post">
 								<input type="text" class="form-control border-0 bg-transparent"
 									placeholder="Search for more than 20,000 products" />

@@ -32,14 +32,14 @@ public class BoardDAO extends DBConnPool{
 	}
 	
 	
-	//게시글 가져오는 메서드
+	//게시글 검색
 	public List<BoardDTO> selectList(Map<String, Object> map){
 		List<BoardDTO> board = new Vector<BoardDTO>();
 		//쿼리
 		String query = "SELECT * FROM board ";
-		if (map.get("search")!=null) {
-			query += " WHERE category "
-					+ " LIKE '%"+map.get("search")+"%'";
+		if (map.get("searchWord")!=null) {
+			query += " WHERE " + map.get("searchField")
+					+ " LIKE '%"+map.get("searchWord")+"%'";
 		}
 		// 내림차순 정렬
 		query += " ORDER BY board_id DESC ";

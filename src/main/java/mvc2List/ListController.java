@@ -27,9 +27,11 @@ public class ListController extends HttpServlet{
 		try {
 				Map<String, Object> map = new HashMap<String, Object>();
 				
-				String search = req.getParameter("search");
-				if(search != null) {
-					map.put("search", search);
+				String searchField = req.getParameter("searchField");
+				String searchWord = req.getParameter("searchWord");
+				if(searchWord != null) {
+					map.put("searchField", searchField);
+					map.put("searchWord", searchWord);
 				}
 				int totalCount = dao.selectCount(map);
 				
@@ -37,6 +39,7 @@ public class ListController extends HttpServlet{
 				dao.close();
 				
 				map.put("totalCount", totalCount);
+				
 				
 				//날짜 구분
 				LocalDate today = LocalDate.now();

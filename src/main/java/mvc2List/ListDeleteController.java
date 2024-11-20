@@ -12,7 +12,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import utils.JSFunction;
 
-@WebServlet("listDelete.do")
+@WebServlet("/listDelete.do")
 public class ListDeleteController extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 
@@ -21,7 +21,7 @@ public class ListDeleteController extends HttpServlet{
 		
 		// 로그인 확인
 		HttpSession session = req.getSession();
-		if(session.getAttribute("UserId")==null) {
+		if(session.getAttribute("id")==null) {
 			JSFunction.alertLocation(resp, "로그인 해주세요", 
 					"./login.do");
 		return;
@@ -30,15 +30,20 @@ public class ListDeleteController extends HttpServlet{
 		//게시물 얻어오기
 		String board_id = req.getParameter("board_id");
 		BoardDAO dao = new BoardDAO();
-		BoardDTO dto = dao.listView(board_id);
+		dao.listView(board_id);
 		
 		// 작성자 확인은 EL로 처리
 		int result = dao.deleteList(board_id);
 		dao.close();
 		
-		//삭제 알림
-		JSFunction.alertLocation(resp, "삭제 했습니다.",
-				"./listView.do");
+		
+		if(result==1) {
+			//삭제 알림
+			JSFunction.alertLocation(resp, "삭제 했습니다.",
+					"./boardlist.do");
+		}else {
+			JSFunction.alertBack(resp, "삭제 실패");
+		}
 		
 	}
 }
