@@ -1,4 +1,4 @@
-package mvc2List;
+package board.ctrl;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -17,7 +17,7 @@ import jakarta.servlet.http.HttpSession;
 import utils.JSFunction;
 
 @WebServlet("/boardlist.do")
-public class ListController extends HttpServlet{
+public class BoardCtrl extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 
 	@Override

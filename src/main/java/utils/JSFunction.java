@@ -6,6 +6,21 @@ import jakarta.servlet.http.HttpServletResponse;
 
 public class JSFunction {
 	
+	//경고창만
+	public static void alert(HttpServletResponse resp, String msg) {
+		
+		try {
+			resp.setContentType("text/html;charset=UTF-8");
+			PrintWriter writer = resp.getWriter();
+			String script =""
+						+ "<script>"
+						+ "		alert('" + msg + "');"
+						+ "</script>";
+			writer.print(script);
+		} catch (Exception e) {}
+	}
+	
+	
 	//경고창 -> 다른 페이지로
 	public static void alertLocation(HttpServletResponse resp,
 						String msg, String url) {

@@ -1,4 +1,4 @@
-package mvc2List;
+package login;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -10,8 +10,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import member.MemberDAO;
 
-@WebServlet("/check.do")
-public class CheckController extends HttpServlet{
+@WebServlet("/DuplicateCheck.do")
+public class DuplicateCheckCtrl extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 
 	

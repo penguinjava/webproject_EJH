@@ -1,4 +1,4 @@
-package mvc2List;
+package login;
 
 import java.io.IOException;
 
@@ -14,7 +14,7 @@ import member.MemberDTO;
 import utils.JSFunction;
 
 @WebServlet("/create.do")
-public class CreateController extends HttpServlet{
+public class CreateCtrl extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 
 	// 페이지 이동
@@ -22,8 +22,8 @@ public class CreateController extends HttpServlet{
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		try {
-				req.getRequestDispatcher("./MvcModel2/Login/CreateHome.jsp")
-					.forward(req, resp);
+			req.getRequestDispatcher("./MvcModel2/Login/CreateHome.jsp")
+				.forward(req, resp);
 			
 			
 		}catch(Exception e) {

@@ -1,4 +1,4 @@
-package mvc2List;
+package board.ctrl;
 
 import java.io.IOException;
 

@@ -8,7 +8,7 @@ function check(user_Id) {
 
 	// AJAX 요청 생성
 	let xhr = new XMLHttpRequest();
-	xhr.open("GET", `./check.do?type=user_id&value=${encodeURIComponent(user_Id)}`, true);
+	xhr.open("GET", `./DuplicateCheck.do?type=user_id&value=${encodeURIComponent(user_Id)}`, true);
 
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState === 4 && xhr.status === 200) {

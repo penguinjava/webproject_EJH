@@ -7,7 +7,7 @@ public class MemberDTO {
 	private String password;
 	private String nickname;
 	private String email = null;
-	private String phone_number = null;
+	private String phone_number;
 	private String gender;
 	private String address;
 	private String join_date;

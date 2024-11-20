@@ -1,6 +1,5 @@
 package board;
 
-import java.sql.PreparedStatement;
 import java.util.List;
 import java.util.Map;
 import java.util.Vector;
@@ -76,7 +75,7 @@ public class BoardDAO extends DBConnPool{
             String query = "INSERT INTO board ( "
                          + " board_id, user_id, title, content, category) "
                          + " VALUES ( "
-                         + " board_seq.nextval,?,?,?,'list')";
+                         + " board_seq.nextval,?,?,?,'board')";
             psmt = con.prepareStatement(query);
             psmt.setString(1, dto.getUser_id());
             psmt.setString(2, dto.getTitle());
@@ -186,5 +185,47 @@ public class BoardDAO extends DBConnPool{
 		}
 		
 		return result;
+	}
+	
+	
+	//페이징
+	public List<BoardDTO> boardPage(Map<String,Object> map){
+		List<BoardDTO> board = new Vector<BoardDTO>();
+			
+		String query = " SELECT * FROM ( "
+					+ " SELECT Tb.*, ROWNUM rNum FROM ( "
+					+ " SELECT * FROM board ";
+		if(map.get("searchWord") != null) {
+				query +=" WHERE " + map.get("searchField")
+					+ " LIKE '%" + map.get("searchWord") + "%'";
+		}
+		query += " ORDER BY board_id DESC "
+					+ " 	) Tb "
+					+ " ) "
+					+ " WHERE rNum BETWEEN ? AND ?";
+			
+		try {
+			psmt = con.prepareStatement(query);
+			psmt.setString(1, map.get("start").toString());
+			psmt.setString(2, map.get("end").toString());
+			rs = psmt.executeQuery();
+				
+			while(rs.next()) {
+				BoardDTO dto = new BoardDTO();
+					
+				dto.setBoard_id(rs.getString(1));
+				dto.setUser_id(rs.getString(2));
+				dto.setTitle(rs.getString(3));
+				dto.setContent(rs.getString(4));
+				dto.setVisitcount(rs.getInt(5));
+				dto.setCategory(rs.getString(6));
+					
+				board.add(dto);
+			}
+		} catch (Exception e) {
+				System.out.println("페이징 중 오류");
+				e.printStackTrace();
+		}
+		return board;
 	}
 }

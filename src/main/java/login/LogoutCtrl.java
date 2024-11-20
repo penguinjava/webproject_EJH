@@ -1,4 +1,4 @@
-package mvc2List;
+package login;
 
 import java.io.IOException;
 
@@ -11,7 +11,7 @@ import jakarta.servlet.http.HttpSession;
 import utils.JSFunction;
 
 @WebServlet("/logout.do")
-public class LogoutController extends HttpServlet{
+public class LogoutCtrl extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 
 	@Override

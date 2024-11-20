@@ -4,8 +4,8 @@ public class BoardDTO {
 	//board 필드 생성
 	private String board_id; // board 식별아이디
 	private String user_id; // member id 식별
-	private String title;
-	private String content;
+	private String title; // 게시판 제목
+	private String content; // 게시판 내용
 	private String postdate; // 날짜
 	private String category; //게시물별 검색
 	private int visitcount;

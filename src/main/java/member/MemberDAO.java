@@ -36,27 +36,34 @@ public class MemberDAO extends DBConnPool{
 	}
 	
 	//아이디 중복 체크
-	public boolean checkId(String str) {
-		boolean result = false;
-		
-		String query = "SELECT COUNT(*) FROM member "
+	public MemberDTO selectInfo(String user_id) {
+		MemberDTO dto = new MemberDTO();
+		String query = "SELECT * FROM member "
 				+ " WHERE user_id=?";
 		
 		try {
 			psmt = con.prepareStatement(query);
-			psmt.setString(1, str);
+			psmt.setString(1, user_id);
+			//쿼리 적용
 			rs = psmt.executeQuery();
 			
-			if(!rs.next()) {
-				result = true;
+			if(rs.next()) {
+				dto.setUser_id(rs.getString(user_id));
+				dto.setUser_name(rs.getString(2));
+				dto.setPassword(rs.getString(3));
+				dto.setNickname(rs.getString(4));
+				dto.setEmail(rs.getString(5));
+				dto.setPhone_number(rs.getString(6));
+				dto.setGender(rs.getString(7));
+				dto.setAddress(rs.getString(8));
+				dto.setJoin_date(rs.getString(9));
 			}
 			
 		} catch (Exception e) {
-			System.out.println("중복확인중 에러");
+			System.out.println("정보를 불어오기 에러");
 			e.printStackTrace();
 		}
-		
-		return result;
+		return dto;
 	}
 	
 	

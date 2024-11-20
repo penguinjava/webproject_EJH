@@ -22,7 +22,16 @@
   
   <session-config>
    <session-timeout>30</session-timeout>
-</session-config>
+  </session-config>
   
+  <!-- 페이징 -->
+  <context-param>
+  	<param-name>POSTS_PER_PAGE</param-name>
+  	<param-value>5</param-value>
+  </context-param>
+    <context-param>
+  	<param-name>PAGES_PER_BLOCK</param-name>
+  	<param-value>5</param-value>
+  </context-param>
    
 </web-app>
