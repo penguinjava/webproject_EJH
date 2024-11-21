@@ -65,8 +65,7 @@
 								<!-- 이메일 -->
 								<div class="mb-3">
 									<label for="email" class="form-label text-dark">기존 Email</label>
-										<span style="color: black;"> : ${dto.email}</span>
-									<!-- 숨김 --> <input type="hidden" name="email" value="${ dto.email}"/>	
+										<span style="color: black;"> : ${dto.email}</span>	
 									<input type="email" id="email" name="email" class="form-control"
 										placeholder="xxx@xxx.com">
 								</div>
@@ -75,7 +74,6 @@
 								<div class="mb-3">
 									<label for="phone_number" class="form-label text-dark">기존 번호</label>
 										<span style="color: black;"> : ${dto.phone_number }</span>
-									<!-- 숨김 --> <input type="hidden" name="phone_number" value="${ dto.phone_number}"/>
 									<p style="color: black;">010 - 
 									<input type="text" id="f_number" name="f_number" class="form-control" 
            									placeholder="앞" maxlength="4" oninput="앞자리" 
@@ -97,7 +95,6 @@
     								<label for="address" class="form-label text-dark">기존 사는 지역</label>
     									<span style="color: black;"> : ${dto.address }</span>
     								<label for="address" class="form-label text-dark">수정 지역을 선택하세요</label>
-    								<!-- 숨김 --> <input type="hidden" name="address" value="${ dto.address}"/>
     								<select id="address" name="address" class="form-control">
         								<option value="서울특별시">서울특별시</option>
         								<option value="인천광역시">인천광역시</option>

@@ -333,10 +333,9 @@
 							<tr>
 								<td>${map.totalCount - (((map.pageNum-1) * map.pageSize) + loop.index)}</td>
 								<td align="left">
-								<a href="./listView.do?board_id=${row.board_id}"> ${row.title}</a></td>
+									<a href="./listView.do?board_id=${row.board_id}"> ${row.title}</a></td>
 								<td>${row.user_id}</td>
 								<td>${row.visitcount}</td>
-								<!-- 여기 날짜 -->
 								<td>${row.postdate }</td>
 							</tr>
 						</c:forEach>

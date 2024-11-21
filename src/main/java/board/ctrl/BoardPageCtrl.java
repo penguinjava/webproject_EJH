@@ -36,19 +36,27 @@ public class BoardPageCtrl extends HttpServlet{
 		}
 		int totalCount = dao.selectCount(map);
 		
+		
+		
+		
 		//페이징 처리//
 		ServletContext application = getServletContext();
 		int pageSize = Integer.parseInt(
 				application.getInitParameter("POSTS_PER_PAGE"));
 		
+		System.out.println(pageSize);
+		
 		int blockPage = Integer.parseInt(
 				application.getInitParameter("PAGES_PER_BLOCK"));
+		
+		System.out.println(blockPage);
 		
 		//현재 페이지 확인
 		int pageNum = 1;
 		String pageTemp = req.getParameter("pageNum");
-		if(pageTemp != null && !pageTemp.equals(""))
-				pageNum = Integer.parseInt(pageTemp);
+		if(pageTemp != null && !pageTemp.equals("")) {
+			pageNum = Integer.parseInt(pageTemp);			
+		}
 		
 		//목록에 출력할 게시물 번위 계산
 		int start = (pageNum -1) * pageSize + 1;
@@ -58,7 +66,7 @@ public class BoardPageCtrl extends HttpServlet{
 		//페이지 끝//
 		
 		
-		List<BoardDTO> boardLists = dao.selectList(map);
+		List<BoardDTO> boardLists = dao.boardPage(map);
 		dao.close();
 		
 		String pagingImg = BoardPage.pagingStr(totalCount, pageSize,
@@ -69,6 +77,26 @@ public class BoardPageCtrl extends HttpServlet{
 		map.put("totalCount", totalCount);
 		map.put("pageSize", pageSize);
 		map.put("pageNum", pageNum);
+		
+		System.out.println(pagingImg);
+		System.out.println(totalCount);
+		System.out.println(pageSize);
+		System.out.println(pageNum);
+		
+		//날짜 구분
+		LocalDate today = LocalDate.now();
+		System.out.println("오늘의 날짜 : "+today.toString());
+		
+		for (BoardDTO list : boardLists) {
+			String[] postdate = list.getPostdate().split(" ");
+			System.out.println("날짜="+postdate[0]+"/시간"+postdate[1]);
+			if(postdate[0].equals(today.toString())) {
+				list.setPostdate("오늘 "+postdate[1]);
+			}else {
+				list.setPostdate(postdate[0]);
+			}
+		}
+		
 		
 		req.setAttribute("boardLists", boardLists);
 		req.setAttribute("map", map);

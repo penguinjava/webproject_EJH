@@ -140,6 +140,7 @@ public class MemberDAO extends DBConnPool{
 			
 			// 업데이트 실행
 			result = psmt.executeUpdate();
+			System.out.println(result);
 		} catch (Exception e) {
 			System.out.println("수정중 오류 발생");
 			e.printStackTrace();

@@ -31,8 +31,10 @@
                 	<form action="./login.do" method="post" class="p-4">
                     	<div class="mb-3">
                         	<label for="user_id" class="form-label">회원 ID</label>
-                            <input type="text" id="user_id" name="user_id" class="form-control" placeholder="ID"
-                                       required>
+                        	<p>
+                            <input type="text" id="user_id" name="user_id" class="form-control" placeholder="ID" required>
+                            <input type="checkbox" name="cookie" value="cookie"/> 아이디 저장
+                            </p>
                         </div>
                         <div class="mb-3">
                         	<label for="password" class="form-label">회원 비밀번호</label>

@@ -1,7 +1,9 @@
 package member.ctrl;
 
 import java.io.IOException;
+import java.net.http.HttpRequest;
 
+import cookie.CookieSave;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -37,8 +39,6 @@ public class LoginCtrl extends HttpServlet{
 		HttpSession session = req.getSession();
 		
 		try {
-			
-			
 			String id = req.getParameter("user_id");
 			String pw = req.getParameter("password");
 			//String nick = req.getParameter("nickname");
@@ -55,6 +55,7 @@ public class LoginCtrl extends HttpServlet{
 				session.setAttribute("id", id);
 				session.setAttribute("nick", dto.getNickname());
 				JSFunction.alert(resp, "!로그인 성공!");
+				
 				req.getRequestDispatcher("./home.do")
 					.forward(req, resp);
 			}
@@ -64,8 +65,6 @@ public class LoginCtrl extends HttpServlet{
 			e.printStackTrace();
 		}
 	}
-	
-	
 	
 	
 }

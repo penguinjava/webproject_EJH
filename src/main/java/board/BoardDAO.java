@@ -217,8 +217,9 @@ public class BoardDAO extends DBConnPool{
 				dto.setUser_id(rs.getString(2));
 				dto.setTitle(rs.getString(3));
 				dto.setContent(rs.getString(4));
-				dto.setVisitcount(rs.getInt(5));
-				dto.setCategory(rs.getString(6));
+				dto.setPostdate(rs.getString(5));
+				dto.setVisitcount(rs.getInt(6));
+				dto.setCategory(rs.getString(7));
 					
 				board.add(dto);
 			}

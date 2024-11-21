@@ -5,15 +5,15 @@ public class BoardPage {
 			int blockPage, int pageNum, String reqUrl) {
 		String pagingStr = "";
 		
-		int totalPages = (int)(Math.ceil((double) totalCount/pageSize));
+		int totalPages = (int)(Math.ceil(((double) totalCount/pageSize)));
 		
 		
 		int pageTemp = (((pageNum - 1)/blockPage) * blockPage) + 1;
 		if(pageTemp != 1) {
 			pagingStr += "<a href='" + reqUrl + "?pageNum=1'>[첫페이지]</a>";
 			pagingStr += "&nbsp;";
-			pagingStr += "<a href='" + reqUrl + "?pageNum="
-						+ (pageTemp - 1) + "'>[이전 블록]</a>";
+			pagingStr += "<a href='" + reqUrl + "?pageNum=" + (pageTemp - 1)
+						+ "'>[이전 블록]</a>";
 		}
 		
 		int blockCount = 1;

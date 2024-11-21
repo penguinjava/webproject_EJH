@@ -40,7 +40,7 @@ public class ListDeleteController extends HttpServlet{
 		if(result==1) {
 			//삭제 알림
 			JSFunction.alertLocation(resp, "삭제 했습니다.",
-					"./boardlist.do");
+					"./boardPage.do");
 		}else {
 			JSFunction.alertBack(resp, "삭제 실패");
 		}
