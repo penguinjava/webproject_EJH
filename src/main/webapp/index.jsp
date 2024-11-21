@@ -208,7 +208,7 @@
 					class="col-sm-8 col-lg-4 d-flex justify-content-end gap-5 align-items-center mt-4 mt-sm-0 justify-content-center justify-content-sm-end">
 
 					<ul class="d-flex justify-content-end list-unstyled m-0">
-						<li><a href="./loginCheck.do"
+						<li><a href="./memberInfo.do"
 							class="rounded-circle bg-light p-2 mx-1">
 							<svg width="24" height="24" viewBox="0 0 24 24">
 									<use xlink:href="#user"></use></svg>
@@ -354,7 +354,8 @@
 										<c:when test="${ empty id }">
 										<h3 class="login-title text-center mb-4">환영합니다</h3>
 										<!-- form -->
-										<form action="./login.do" method="post" class="p-4">
+										<form action="./
+.do" method="post" class="p-4">
 											<div class="mb-3">
 												<label for="user_id" class="form-label text-dark">회원 ID
 												</label> <input type="text" id="user_id" name="user_id"
