@@ -354,8 +354,7 @@
 										<c:when test="${ empty id }">
 										<h3 class="login-title text-center mb-4">환영합니다</h3>
 										<!-- form -->
-										<form action="./
-.do" method="post" class="p-4">
+										<form action="./login.do" method="post" class="p-4">
 											<div class="mb-3">
 												<label for="user_id" class="form-label text-dark">회원 ID
 												</label> <input type="text" id="user_id" name="user_id"

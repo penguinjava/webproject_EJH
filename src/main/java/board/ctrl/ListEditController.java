@@ -22,7 +22,7 @@ public class ListEditController extends HttpServlet{
 		HttpSession session = req.getSession();
 		
 		// 세션에서 아디이 확인
-		//로그인을 해도 시간이 나나면 끊길 수 있음 
+		// 로그인을 해도 시간이 지나면 끊길 수 있음 
 		if(session.getAttribute("id")==null) {
 			JSFunction.alertLocation(resp,"다시 로그인 해주세요.",
 						"./login.do");

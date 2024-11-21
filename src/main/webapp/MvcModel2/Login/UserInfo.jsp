@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <title>로그인 화면</title>
+    <title>유저 정보</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -34,21 +34,18 @@
         					<p style="color: black;"><strong>회원님 이름 : </strong>
         						${dto.user_name}</p>
         					<p style="color: black;"><strong>회원 가입일 : </strong>
-        						${join_date}</p>
+        						${dto.join_date}</p>
         					<p style="color: black;"><strong>이  메  일 : </strong>
         						${dto.email}</p>
         					<p style="color: black;"><strong>전 화 번 호 : </strong>
         						${dto.phone_number}</p>
     					</div>
-    					<!-- 시간있으면 구현 -->
-    					<input type="hidden" name="${dto.possword }">
     			</div>
-    			<!-- 로그아웃 / 돌아가기 -->
+    			<!-- 개인정보 / 로그아웃 / 돌아가기 -->
     			<div class="text-center" style="display: flex; justify-content: center; gap: 10px;">
     				<!-- 개인정보 수정 -->
-   				 	<form action="./userEdit.do" method="post">
- 	   					<button type="submit" class="btn btn-danger" name="indexOut">개인 정보 수정</button>
-    				</form>
+ 	   					<button type="button" class="btn btn-danger" onclick="location.href='./userEdit.do'">개인 정보 수정</button>
+ 	   					<!-- 로그아웃 -->
     				<form action="./logout.do" method="post">
         				<button type="submit" class="btn btn-danger">로그아웃</button>
     				</form>

@@ -10,7 +10,7 @@
 <a href="../memberInfo.do">정보 보기</a>
 <h1>정보</h1>${dto.user_name }
 <p>아이디</p>${dto.user_id }
-<p>닉네임</p>${dto.nick_name }
+<p>닉네임</p>${dto.nickname }
 <p>날짜</p>${join_date }
 </body>
 </html>

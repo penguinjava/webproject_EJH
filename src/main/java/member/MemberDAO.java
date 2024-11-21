@@ -1,5 +1,6 @@
 package member;
 
+import board.BoardDTO;
 import common.DBConnPool;
 
 public class MemberDAO extends DBConnPool{
@@ -48,7 +49,7 @@ public class MemberDAO extends DBConnPool{
 			rs = psmt.executeQuery();
 			
 			if(rs.next()) {
-				dto.setUser_id(rs.getString(user_id));
+				dto.setUser_id(rs.getString("user_id"));
 				dto.setUser_name(rs.getString(2));
 				dto.setPassword(rs.getString(3));
 				dto.setNickname(rs.getString(4));
@@ -121,4 +122,28 @@ public class MemberDAO extends DBConnPool{
         }
         return available;
     }
+	
+	
+	//개인 정보 수정하기
+	public int updateInfo(MemberDTO dto) {
+		int result = 0;
+		String query = "UPDATE member "
+				+ " SET email=?, phone_number=?, address=? "
+				+ " WHERE user_id=?";
+		
+		try {
+			psmt = con.prepareStatement(query);
+			psmt.setString(1, dto.getEmail());			
+			psmt.setString(2, dto.getPhone_number());			
+			psmt.setString(3, dto.getAddress());
+			psmt.setString(4, dto.getUser_id());
+			
+			// 업데이트 실행
+			result = psmt.executeUpdate();
+		} catch (Exception e) {
+			System.out.println("수정중 오류 발생");
+			e.printStackTrace();
+		}
+		return result;
+	}
 }

@@ -1,4 +1,4 @@
-package login;
+package member.ctrl;
 
 import java.io.IOException;
 

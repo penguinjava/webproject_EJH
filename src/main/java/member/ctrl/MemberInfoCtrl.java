@@ -1,4 +1,4 @@
-package login;
+package member.ctrl;
 
 import java.io.IOException;
 
@@ -23,31 +23,61 @@ public class MemberInfoCtrl extends HttpServlet{
 		//세션의 아이디를 불러오기
 		HttpSession session = req.getSession();
 		MemberDAO dao = new MemberDAO();
-		String id = session.getAttribute("id").toString();
+		MemberDTO dto = new MemberDTO();
 		
 		try {
 			//세션이 없을시 로그인 화면으로 이동
 			if (session.getAttribute("id") == null) {
 				JSFunction.alertLocation(resp, "로그인 하세요", "./login.do");
 			}else {
+				String id = session.getAttribute("id").toString();
 				// 정보 불러오기
-				MemberDTO dto = dao.selectInfo(id);
+				dto = dao.selectInfo(id);
+				dao.close();
 				
 				String[] date = dto.getJoin_date().split(" ");
-				System.out.println(date);
+				dto.setJoin_date(date[0]);
 				
-				req.setAttribute("join_date", date[0]);
 				req.setAttribute("dto", dto);
-				req.getRequestDispatcher("./MvcModel2/Test/InfoTest.jsp")
+				req.getRequestDispatcher("./MvcModel2/Login/UserInfo.jsp")
+					.forward(req, resp);
+			}
+		} catch (Exception e) {
+			System.out.println("정보 이동중 에러");
+			e.printStackTrace();
+		}  
+	}
+
+	//수정했을 때 받기
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		//세션의 아이디를 불러오기
+		HttpSession session = req.getSession();
+		MemberDAO dao = new MemberDAO();
+		MemberDTO dto = new MemberDTO();
+		
+		try {
+			//세션이 없을시 로그인 화면으로 이동
+			if (session.getAttribute("id") == null) {
+				JSFunction.alertLocation(resp, "로그인 하세요", "./login.do");
+			}else {
+				String id = session.getAttribute("id").toString();
+				// 정보 불러오기
+				dto = dao.selectInfo(id);
+				dao.close();
+				
+				String[] date = dto.getJoin_date().split(" ");
+				dto.setJoin_date(date[0]);
+				
+				req.setAttribute("dto", dto);
+				req.getRequestDispatcher("./MvcModel2/Login/UserInfo.jsp")
 					.forward(req, resp);
 			}
 		} catch (Exception e) {
 			System.out.println("정보 이동중 에러");
 			e.printStackTrace();
 		}
-		
-		
-		
 	}
-
+	
 }
