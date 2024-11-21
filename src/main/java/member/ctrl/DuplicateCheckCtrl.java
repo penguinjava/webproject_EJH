@@ -21,12 +21,12 @@ public class DuplicateCheckCtrl extends HttpServlet{
         String value = req.getParameter("value");
         MemberDAO dao = new MemberDAO();
 
-        boolean available = dao.check(type, value); // 데이터베이스에서 확인
+        boolean result = dao.check(type, value); // 데이터베이스에서 확인
         
         // 결과를 JSON 형식으로 응답
         resp.setContentType("application/json");
         PrintWriter out = resp.getWriter();
-        out.write("{ \"available\": " + available + " }");
+        out.write("{ \"available\": " + result + " }");
         out.flush();
 	}
 }

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core"%>
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -32,7 +32,6 @@
 	rel="stylesheet">
 
 </head>
-
 <body>
 
 	<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
@@ -168,7 +167,13 @@
 				<h4 class="d-flex justify-content-between align-items-center mb-3">
 					<span class="text-primary">Search</span>
 				</h4>
-				
+				<form role="search" action="./boardPage.do" method="get"
+					class="d-flex mt-3 gap-0">
+					<input class="form-control rounded-start rounded-0 bg-light"
+						type="email" placeholder="What are you looking for?"
+						aria-label="What are you looking for?">
+					<button class="btn btn-dark rounded-end rounded-0" type="submit">Search</button>
+				</form>
 			</div>
 		</div>
 	</div>
@@ -188,29 +193,41 @@
 				<div
 					class="col-sm-6 offset-sm-2 offset-md-0 col-lg-5 d-none d-lg-block">
 					<div class="search-bar row bg-light p-2 my-2 rounded-4">
-						<!-- 검색 기능 -->
-						<form action="./boardPage.do" method="GET" class="mb-4" style="text-align: center;">
-							<div class="input-group" style="max-width: 600px; margin: 0 auto;">
-								<select name="searchFild" class="form-select border-0 bg-transparent">
-									<option value="title">제목</option>
-									<option value="content">내용</option>
-								</select>
-								<input type="text" name="search" class="form-control"
-										placeholder="검색하기" name="searchWord"/>
-								<button type="submit" class="btn btn-outline-primary">검색하기</button>
-							</div>
-						</form>
-						<!------------>
+						<div class="col-md-4 d-none d-md-block">
+							<select class="form-select border-0 bg-transparent">
+								<option>전체</option>
+								<option>자유게시판</option>
+								<option>자료실</option>
+								<option>Q&A 게시판</option>
+							</select>
+						</div>
+						<div class="col-11 col-md-7">
+							<form id="search-form" class="text-center" action=""
+								method="post">
+								<input type="text" class="form-control border-0 bg-transparent"
+									placeholder="Search for more than 20,000 products" />
+							</form>
+						</div>
+						<div class="col-1">
+							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+								viewBox="0 0 24 24">
+								<path fill="currentColor"
+									d="M21.71 20.29L18 16.61A9 9 0 1 0 16.61 18l3.68 3.68a1 1 0 0 0 1.42 0a1 1 0 0 0 0-1.39ZM11 18a7 7 0 1 1 7-7a7 7 0 0 1-7 7Z" /></svg>
+						</div>
 					</div>
 				</div>
 
 				<div
 					class="col-sm-8 col-lg-4 d-flex justify-content-end gap-5 align-items-center mt-4 mt-sm-0 justify-content-center justify-content-sm-end">
+					<div class="support-box text-end d-none d-xl-block">
+						<span class="fs-6 text-muted">For Support?</span>
+						<h5 class="mb-0">+980-34984089</h5>
+					</div>
 
 					<ul class="d-flex justify-content-end list-unstyled m-0">
-						<li><a href="./memberInfo.do"
-							class="rounded-circle bg-light p-2 mx-1">
-							<svg width="24" height="24" viewBox="0 0 24 24">
+						<li><a href="MvcModel2/Login/LoginHome.jsp"
+							class="rounded-circle bg-light p-2 mx-1"> <svg width="24"
+									height="24" viewBox="0 0 24 24">
 									<use xlink:href="#user"></use></svg>
 						</a></li>
 						<li><a href="#" class="rounded-circle bg-light p-2 mx-1">
@@ -262,7 +279,7 @@
 									class="navbar-nav justify-content-end menu-list list-unstyled d-flex gap-md-3 mb-0">
 									<li class="nav-item active"><a href="./boardPage.do"
 										class="nav-link">자유게시판</a></li>
-									<li class="nav-item dropdown"><a href="./filePage.do"
+									<li class="nav-item dropdown"><a href="./filelist.do"
 										class="nav-link">자료실</a></li>
 									<li class="nav-item"><a href="./commendlist.do"
 										class="nav-link">Q&A게시판</a></li>
@@ -278,150 +295,65 @@
 
 	<section class="py-3"
 		style="background-image: url('images/background-pattern.jpg'); background-repeat: no-repeat; background-size: cover;">
-		<div class="container-fluid">
-			<div class="row">
-				<div class="col-md-12">
 
-					<div class="banner-blocks">
-
-						<div class="banner-ad large bg-info block-1">
-
-							<div class="swiper main-swiper">
-								<div class="swiper-wrapper">
-
-									<div class="swiper-slide">
-										<div class="row banner-content p-5">
-											<div class="content-wrapper col-md-7">
-												<div class="categories my-3">100% natural</div>
-												<h3 class="display-4">Fresh Smoothie & Summer Juice</h3>
-												<p>Lorem ipsum dolor sit amet, consectetur adipiscing
-													elit. Dignissim massa diam elementum.</p>
-												<a href="#"
-													class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1 px-4 py-3 mt-3">Shop
-													Now</a>
-											</div>
-											<div class="img-wrapper col-md-5">
-												<img src="images/product-thumb-1.png" class="img-fluid">
-											</div>
-										</div>
-									</div>
-
-									<div class="swiper-slide">
-										<div class="row banner-content p-5">
-											<div class="content-wrapper col-md-7">
-												<div class="categories mb-3 pb-3">100% natural</div>
-												<h3 class="banner-title">Fresh Smoothie & Summer Juice</h3>
-												<p>Lorem ipsum dolor sit amet, consectetur adipiscing
-													elit. Dignissim massa diam elementum.</p>
-												<a href="#"
-													class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1">Shop
-													Collection</a>
-											</div>
-											<div class="img-wrapper col-md-5">
-												<img src="images/product-thumb-1.png" class="img-fluid">
-											</div>
-										</div>
-									</div>
-
-									<div class="swiper-slide">
-										<div class="row banner-content p-5">
-											<div class="content-wrapper col-md-7">
-												<div class="categories mb-3 pb-3">100% natural</div>
-												<h3 class="banner-title">Heinz Tomato Ketchup</h3>
-												<p>Lorem ipsum dolor sit amet, consectetur adipiscing
-													elit. Dignissim massa diam elementum.</p>
-												<a href="#"
-													class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1">Shop
-													Collection</a>
-											</div>
-											<div class="img-wrapper col-md-5">
-												<img src="images/product-thumb-2.png" class="img-fluid">
-											</div>
-										</div>
-									</div>
-								</div>
-
-								<div class="swiper-pagination"></div>
-
-							</div>
-						</div>
-						<!-- 로그인 화면 -->
-						<div class="login-banner bg-primary-subtle block-2"
-							style="background: url('images/login-bg.png') no-repeat; background-position: center; background-size: cover;">
-							<div class="row login-content p-5">
-								<div class="content-wrapper col-md-7 mx-auto text-white">
-									<c:choose>
-										<c:when test="${ empty id }">
-										<h3 class="login-title text-center mb-4">환영합니다</h3>
-										<!-- form -->
-										<form action="./login.do" method="post" class="p-4">
-											<div class="mb-3">
-												<label for="user_id" class="form-label text-dark">회원 ID
-												</label> <input type="text" id="user_id" name="user_id"
-													class="form-control" placeholder="ID" required>
-											</div>
-											<div class="mb-3">
-												<label for="password" class="form-label text-dark">회원 비밀번호</label>
-												<input type="password" id="password" name="password"
-														class="form-control" placeholder="PW" required>
-											</div>
-											<button type="submit" class="btn btn-primary w-100 mb-3">로그인</button>
-										</form>
-											<div class="text-center">
-												<a href="" class="nav-link text-dark">아이디 찾기</a>
-											</div>
-											<div class="text-center">
-												<a href="" class="nav-link text-dark">비밀번호 찾기</a>
-											</div>
-											<div class="text-center mt-4">
-												<a href="./create.do" class="btn btn-secondary">회원 가입</a>
-											</div>
-										</c:when>
-										<c:otherwise>
-											<div class="container mt-5">
-   				 								<!-- 사용자 정보 -->
-    											<h3 class="login-title text-center mb-4">환영합니다, ${nick }님!</h3>
-    											<div class="mb-4 text-center">
-        											<p style="color: black;"><strong>회원님 이름 : </strong>${dto.user_name}</p>
-        											<p style="color: black;"><strong>회원 가입일 : </strong>${join_date}</p>
-        											<p style="color: black;"><strong>이  메  일 : </strong>${dto.email}</p>
-        											<p style="color: black;"><strong>전 화 번 호 : </strong>${dto.phone_number}</p>
-    											</div>
-    											<!-- 로그아웃 버튼 -->
-    											<div class="text-center">
-        											<form action="./logout.do" method="post">
-            											<button type="submit" class="btn btn-danger w-50"
-            											 name="indexOut">로그아웃</button>
-        											</form>
-    											</div>
-											</div>
-										</c:otherwise>
-									</c:choose>
-										</div>
-									</div>
-								</div>
-						<div class="banner-ad bg-danger block-3"
-							style="background: url('images/ad-image-2.png') no-repeat; background-position: right bottom">
-							<div class="row banner-content p-5">
-
-								<div class="content-wrapper col-md-7">
-									<div class="categories sale mb-3 pb-3">15% off</div>
-									<h3 class="item-title">Baked Products</h3>
-									<a href="#" class="d-flex align-items-center nav-link">Shop
-										Collection <svg width="24" height="24">
-											<use xlink:href="#arrow-right"></use></svg>
-									</a>
-								</div>
-
-							</div>
-						</div>
-
-					</div>
-					<!-- / Banner Blocks -->
-
-				</div>
+		<!-- 검색 폼 임시 -->
+		<form method="GET" class="mb-4" style="text-align: center;">
+			<div class="input-group" style="max-width: 600px; margin: 0 auto;">
+				<select name="searchFild" class="form-select border-0 bg-transparent">
+					<option value="title">제목</option>
+					<option value="content">내용</option>
+				</select>
+				<input type="text" name="searchWord" class="form-control"
+					placeholder="검색하기" />
+				<button type="submit" class="btn btn-outline-primary">검색하기</button>
 			</div>
-		</div>
+		</form>
+        
+		<!-- 목록 -->
+		<table class="table table-striped table-hover table-bordered"
+			style="width: 90%; margin: 20px auto; font-size: 18px;">
+			<thead class="thead-dark">
+				<tr>
+					<th style="white-space: nowrap;">번호</th>
+					<th style="white-space: nowrap;">제목</th>
+					<th style="white-space: nowrap;">작성자</th>
+					<th style="white-space: nowrap;">조회수</th>
+					<th style="white-space: nowrap;">작성일</th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:choose>
+					<c:when test="${empty boardLists}">
+						<tr>
+							<td colspan="6" style="text-align: center;">등록된 게시물이 없습니다.</td>
+						</tr>
+					</c:when>
+					<c:otherwise>
+						<c:forEach items="${boardLists}" var="row" varStatus="loop">
+							<tr>
+								<td>${map.totalCount - (((map.pageNum-1) * map.pageSize) + loop.index)}</td>
+								<td align="left">
+									<a href="./listView.do?board_id=${row.board_id}"> ${row.title}</a></td>
+								<td>${row.user_id}</td>
+								<td>${row.visitcount}</td>
+								<td>${row.postdate }</td>
+							</tr>
+						</c:forEach>
+					</c:otherwise>
+				</c:choose>
+			</tbody>
+		</table >
+		<!--  여기에 페이지 추가 -->
+		<table class="table table-striped table-hover table-bordered">
+			<tr align="center">
+				<td>${map.pagingImg }<td>
+				<!-- 글쓰기 작성 버튼 -->
+				<th style="white-space: nowrap;">
+					<button type="button" class="btn btn-danger" style="width: 200px; margin-right: 10px;"
+        				onclick="location.href='./listWrite.do';">글 작성하기</button>
+        		</th>
+			</tr>
+		</table>
 	</section>
 	<script src="js/jquery-1.11.0.min.js"></script>
 	<script
@@ -432,6 +364,5 @@
 		crossorigin="anonymous"></script>
 	<script src="js/plugins.js"></script>
 	<script src="js/script.js"></script>
-
 </body>
 </html>

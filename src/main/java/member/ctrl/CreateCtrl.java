@@ -51,12 +51,13 @@ public class CreateCtrl extends HttpServlet{
 		dto.setUser_name(req.getParameter("user_name"));
 		dto.setPassword(req.getParameter("password"));
 		dto.setNickname(nick);
+		dto.setEmail(req.getParameter("email"));
 		dto.setPhone_number(number);
 		dto.setGender(req.getParameter("gender"));
 		dto.setAddress(req.getParameter("address"));
 		
 		String email = req.getParameter("email");
-		// DB의 디폰트값 유지를 위해서 입력이 없으면 받지않음
+		// DB의 디폴트값 유지를 위해서 입력이 없으면 받지않음
 		if (email == null|| email.isEmpty()) {
 			dto.setEmail("등록된 이메일이 없음");
 		}

@@ -41,7 +41,7 @@
 							<h3 class="login-title text-center mb-4 text-dark">회원 가입</h3>
 							<!-- 필수 표시 -->
 							<div class="mb-3" style="color: red;">* 표시는 필수 항목 입니다.</div>
-							<form action="../../create.do" method="post" class="p-4">
+							<form action="./create.do" method="post" class="p-4">
 								<!-- 아이디 -->
 								<div class="mb-3">
 									<label for="user_id" class="form-label text-dark">
@@ -141,7 +141,7 @@
 
 								<!-- 회원 재확인 -->
 								<div class="text-center">
-									<a href="../../index.jsp" class="nav-link text-dark">이미 계정이
+									<a href="./login.do" class="nav-link text-dark">이미 계정이
 										있으신가요? 로그인</a>
 								</div>
 							</form>

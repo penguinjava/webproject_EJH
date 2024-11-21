@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -16,7 +17,7 @@ import utils.JSFunction;
 public class MemberInfoCtrl extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 	
-	// 홈에서 로그인이 되어있으면 요청 보내기
+	// 홈에서 회원페이지로
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
@@ -47,6 +48,7 @@ public class MemberInfoCtrl extends HttpServlet{
 			e.printStackTrace();
 		}  
 	}
+	
 
 	//수정했을 때 받기
 	@Override
@@ -79,5 +81,4 @@ public class MemberInfoCtrl extends HttpServlet{
 			e.printStackTrace();
 		}
 	}
-	
 }

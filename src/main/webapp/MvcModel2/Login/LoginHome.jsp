@@ -29,13 +29,15 @@
             <div class="col-md-6 bg-white p-5 rounded-3 shadow">
             	<h3 class="text-center mb-4">환영합니다</h3>
                 	<form action="./login.do" method="post" class="p-4">
-                    	<div class="mb-3">
-                        	<label for="user_id" class="form-label">회원 ID</label>
-                        	<p>
-                            <input type="text" id="user_id" name="user_id" class="form-control" placeholder="ID" required>
-                            <input type="checkbox" name="cookie" value="cookie"/> 아이디 저장
-                            </p>
-                        </div>
+                   		<div class="mb-3">
+        					<label for="user_id" class="form-label">회원 ID</label>
+        					<input type="text" id="user_id" name="user_id" class="form-control"
+               						placeholder="ID" value="${cookieId }" required />
+
+            				<input type="checkbox" name="rememberId" id="rememberId" 
+            				class="form-check-input" ${cookieId != null ? "checked" : ""} />
+            				<label for="rememberId" class="form-check-label">아이디 저장하기</label>
+        				</div>
                         <div class="mb-3">
                         	<label for="password" class="form-label">회원 비밀번호</label>
                             <input type="password" id="password" name="password" class="form-control"
