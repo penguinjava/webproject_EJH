@@ -46,6 +46,7 @@ public class ListWriteController extends HttpServlet{
 			dto.setUser_id(session.getAttribute("id").toString());
 			dto.setTitle(req.getParameter("title"));
 			dto.setContent(req.getParameter("content"));
+			dto.setCategory(req.getParameter("category"));
 			
 			//글쓰기
 			int result = dao.insertboard(dto);

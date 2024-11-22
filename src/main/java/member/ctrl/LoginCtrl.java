@@ -56,12 +56,15 @@ public class LoginCtrl extends HttpServlet{
 		MemberDAO dao = new MemberDAO();
 		HttpSession session = req.getSession();
 		
+		
 		try {
 			String id = req.getParameter("user_id");
 			String pw = req.getParameter("password");
 			//String nick = req.getParameter("nickname");
 			// 아이디 체크 확인
 			String rememberId = req.getParameter("rememberId");
+			// 로그인 위치 지정
+			String loginHome = req.getParameter("loginHome");
 			
 			System.out.println(rememberId);
 			
@@ -110,8 +113,15 @@ public class LoginCtrl extends HttpServlet{
 				session.setAttribute("nick", dto.getNickname());
 				JSFunction.alert(resp, "!로그인 성공!");
 				
-				req.getRequestDispatcher("./home.do")
-					.forward(req, resp);
+				//로그인을 위치 지정
+				if(loginHome.equals("home")) {
+					req.getRequestDispatcher("./home.do")
+						.forward(req, resp);
+				}else if(loginHome.equals("info")){
+					req.getRequestDispatcher("./userInfo.do")
+						.forward(req, resp);
+				}
+
 			}
 		} catch (Exception e) {
 			System.out.println("로그인 오류 발생!");

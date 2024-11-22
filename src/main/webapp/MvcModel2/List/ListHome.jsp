@@ -189,13 +189,12 @@
 						</a>
 					</div>
 				</div>
-
 				<div
 					class="col-sm-6 offset-sm-2 offset-md-0 col-lg-5 d-none d-lg-block">
 					<div class="search-bar row bg-light p-2 my-2 rounded-4">
 						<div class="col-md-4 d-none d-md-block">
 							<select class="form-select border-0 bg-transparent">
-								<option>전체</option>
+								<option >전체</option>
 								<option>자유게시판</option>
 								<option>자료실</option>
 								<option>Q&A 게시판</option>
@@ -279,14 +278,13 @@
 									class="navbar-nav justify-content-end menu-list list-unstyled d-flex gap-md-3 mb-0">
 									<li class="nav-item active"><a href="./boardPage.do"
 										class="nav-link">자유게시판</a></li>
-									<li class="nav-item dropdown"><a href="./filelist.do"
+									<li class="nav-item dropdown"><a href="./filePage.do"
 										class="nav-link">자료실</a></li>
-									<li class="nav-item"><a href="./commendlist.do"
+									<li class="nav-item"><a href="./commendPage.do"
 										class="nav-link">Q&A게시판</a></li>
 								</ul>
 
 							</div>
-
 						</div>
 				</div>
 			</div>
@@ -295,7 +293,7 @@
 
 	<section class="py-3"
 		style="background-image: url('images/background-pattern.jpg'); background-repeat: no-repeat; background-size: cover;">
-
+		<h1 style="text-align: center;"><strong>자유 게시판</strong></h1>
 		<!-- 검색 폼 임시 -->
 		<form method="GET" class="mb-4" style="text-align: center;">
 			<div class="input-group" style="max-width: 600px; margin: 0 auto;">

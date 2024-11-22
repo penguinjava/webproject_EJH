@@ -323,13 +323,13 @@
 			</thead>
 			<tbody>
 				<c:choose>
-					<c:when test="${empty boardLists}">
+					<c:when test="${empty fileLists}">
 						<tr>
 							<td colspan="6" style="text-align: center;">등록된 게시물이 없습니다.</td>
 						</tr>
 					</c:when>
 					<c:otherwise>
-						<c:forEach items="${boardLists}" var="row" varStatus="loop">
+						<c:forEach items="${fileLists}" var="row" varStatus="loop">
 							<tr>
 								<td>${map.totalCount - (((map.pageNum-1) * map.pageSize) + loop.index)}</td>
 								<td align="left">
@@ -350,7 +350,7 @@
 				<!-- 글쓰기 작성 버튼 -->
 				<th style="white-space: nowrap;">
 					<button type="button" class="btn btn-danger" style="width: 200px; margin-right: 10px;"
-        				onclick="location.href='./listWrite.do';">글 작성하기</button>
+        				onclick="location.href='./fileWrite.do';">글 작성하기</button>
         		</th>
 			</tr>
 		</table>

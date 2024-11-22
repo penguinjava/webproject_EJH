@@ -16,10 +16,11 @@
     <link rel="stylesheet" href="css/vendor.css">
     <link rel="stylesheet" href="style.css">
 </head>
-<body>  
+<body>
     <div class="container mt-5">
         <h2 class="text-center mb-4">게시글 작성</h2>
-        <form action="./listWrite.do" method="post">
+        <form action="./fileWrite.do" method="post"
+        	enctype="multipart/form-data">
             <div class="mb-3">
                 <label for="title" class="form-label">제목</label>
                 <input type="text" class="form-control" id="title" name="title" placeholder="제목을 입력하세요" required>
@@ -28,11 +29,16 @@
                 <label for="content" class="form-label">내용</label>
                 <textarea class="form-control" id="content" name="content" rows="10" placeholder="내용을 입력하세요" required></textarea>
             </div>
+            <!-- 첨부 파일 -->
+            <div class="mb-3">
+            	<label for="ofile" class="form-label">첨부 파일</label>
+            	<input type="file" class="form-control" id="ofile" name="ofile" />
+            </div>
             <!-- 게시글 종류 구분 -->
-            <input type="hidden" value="board" name="category" />
+            <input type="hidden" value="file" name="category" />
             <div class="text-center">
                 <button type="submit" class="btn btn-primary">글 작성</button>
-                <a href="./listWrite.do" class="btn btn-secondary">취소</a>
+                <a href="./fileWrite.do" class="btn btn-secondary">취소</a>
             </div>
         </form>
     </div>

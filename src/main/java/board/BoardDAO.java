@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.Vector;
 
 import common.DBConnPool;
+import file.FileDTO;
 
 public class BoardDAO extends DBConnPool{
 
@@ -13,9 +14,11 @@ public class BoardDAO extends DBConnPool{
 	public int selectCount(Map<String, Object> map) {
 		int totalCount =0;
 		String query = "SELECT COUNT(*) FROM board ";
-		if (map.get("search")!=null) {
-			query += " WHERE category "
-					+ " LIKE '%"+map.get("search")+"%'";
+		if (map.get("searchWord")!=null) {
+			query += " WHERE category= " + map.get("searchField")
+					+ " AND LIKE '%"+map.get("searchWord")+"%'";
+		}else {
+			query += " WHERE category='board' ";
 		}
 		
 		try {
@@ -32,54 +35,57 @@ public class BoardDAO extends DBConnPool{
 	
 	
 	//게시글 검색
-	public List<BoardDTO> selectList(Map<String, Object> map){
-		List<BoardDTO> board = new Vector<BoardDTO>();
-		//쿼리
-		String query = "SELECT * FROM board ";
-		if (map.get("searchWord")!=null) {
-			query += " WHERE " + map.get("searchField")
-					+ " LIKE '%"+map.get("searchWord")+"%'";
-		}
-		// 내림차순 정렬
-		query += " ORDER BY board_id DESC ";
-		
-		try {
-			psmt = con.prepareStatement(query);
-			rs = psmt.executeQuery();
-			while(rs.next()) {
-				BoardDTO dto = new BoardDTO();
-				
-				
-				dto.setBoard_id(rs.getString(1));
-				dto.setUser_id(rs.getString(2));
-				dto.setTitle(rs.getString(3));
-				dto.setContent(rs.getString(4));
-				dto.setPostdate(rs.getString(5));
-				dto.setVisitcount(rs.getInt(6));
-				
-				board.add(dto);
-			}
-		} catch (Exception e) {
-			System.out.println("게시글 조회 오류");
-			e.printStackTrace();
-		}
-		
-		return board;
-	}
+//	public List<BoardDTO> selectList(Map<String, Object> map){
+//		List<BoardDTO> board = new Vector<BoardDTO>();
+//		//쿼리
+//		String query = "SELECT * FROM board ";
+//		if (map.get("searchWord")!=null) {
+//			query += " WHERE " + map.get("searchField")
+//					+ " LIKE '%"+map.get("searchWord")+"%'";
+//		}
+//		// 내림차순 정렬
+//		query += " ORDER BY board_id DESC ";
+//		
+//		try {
+//			psmt = con.prepareStatement(query);
+//			rs = psmt.executeQuery();
+//			while(rs.next()) {
+//				BoardDTO dto = new BoardDTO();
+//				
+//				
+//				dto.setBoard_id(rs.getString(1));
+//				dto.setUser_id(rs.getString(2));
+//				dto.setTitle(rs.getString(3));
+//				dto.setContent(rs.getString(4));
+//				dto.setPostdate(rs.getString(5));
+//				dto.setVisitcount(rs.getInt(6));
+//				
+//				board.add(dto);
+//			}
+//		} catch (Exception e) {
+//			System.out.println("게시글 조회 오류");
+//			e.printStackTrace();
+//		}
+//		
+//		return board;
+//	}
 	
 	
 	// 글쓰기 하고 DB 저장
-	public int insertboard(BoardDTO dto) {
+	public int insertboard(BoardDTO bdto) {
         int result = 0;
         try {
-            String query = "INSERT INTO board ( "
+            String query1 = "INSERT INTO board ( "
                          + " board_id, user_id, title, content, category) "
                          + " VALUES ( "
-                         + " board_seq.nextval,?,?,?,'board')";
-            psmt = con.prepareStatement(query);
-            psmt.setString(1, dto.getUser_id());
-            psmt.setString(2, dto.getTitle());
-            psmt.setString(3, dto.getContent());
+                         + " board_seq.nextval,?,?,?,?)";
+            
+            
+            psmt = con.prepareStatement(query1);
+            psmt.setString(1, bdto.getUser_id());
+            psmt.setString(2, bdto.getTitle());
+            psmt.setString(3, bdto.getContent());
+            psmt.setString(4, bdto.getCategory());
             result = psmt.executeUpdate();
         }
         catch (Exception e) {
@@ -91,6 +97,7 @@ public class BoardDAO extends DBConnPool{
 	
 	
 	// 글쓰기 뷰를 select 식별
+	
 	public BoardDTO listView(String board_id) {
 		BoardDTO dto = new BoardDTO();
 		
@@ -196,8 +203,11 @@ public class BoardDAO extends DBConnPool{
 					+ " SELECT Tb.*, ROWNUM rNum FROM ( "
 					+ " SELECT * FROM board ";
 		if(map.get("searchWord") != null) {
-				query +=" WHERE " + map.get("searchField")
+				query +=" WHERE category=" + map.get("searchFild")
+					+ " AND title "
 					+ " LIKE '%" + map.get("searchWord") + "%'";
+		}else {
+			query += " WHERE category='board' ";
 		}
 		query += " ORDER BY board_id DESC "
 					+ " 	) Tb "

@@ -44,6 +44,7 @@
                                       placeholder="PW" required>
                        	</div>
                             <button type="submit" class="btn btn-primary w-100 mb-3">로그인</button>
+                            <input type="hidden" name="loginHome" value="info"/>
                    	</form>
                    	<div class="text-center">
                     	<a href="#" class="nav-link text-dark">아이디 찾기</a>
