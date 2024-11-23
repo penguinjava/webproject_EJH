@@ -33,6 +33,26 @@ CREATE TABLE files (
     upload_date DATE DEFAULT SYSDATE -- 업로드 날짜 (기본값 현재 날짜)
 );
 
+
+--comment 테이블
+create table comments(
+    cm_id number PRIMARY KEY,
+    board_id number not null,
+    user_id number not null,
+    content varchar2(2000),
+    cm_date DATE DEFAULT sysdate
+);
+
+--cm_id 시퀀스 작성
+create sequence cm_seq
+    increment by 1
+    start with 1
+    minvalue 1
+    nomaxvalue
+    nocycle
+    nocache;
+
+
 --file_id 시퀀스 작성
 create sequence file_seq
     increment by 1

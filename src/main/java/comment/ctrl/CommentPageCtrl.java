@@ -1,4 +1,4 @@
-package board.ctrl;
+package comment.ctrl;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -16,8 +16,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import utils.BoardPage;
 
-@WebServlet("/boardPage.do")
-public class BoardPageCtrl extends HttpServlet{
+@WebServlet("/commentPage.do")
+public class CommentPageCtrl extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 	
 	@Override
@@ -36,7 +36,9 @@ public class BoardPageCtrl extends HttpServlet{
 		}
 		int totalCount = dao.selectCount(map);
 		
-
+		
+		
+		
 		//페이징 처리//
 		ServletContext application = getServletContext();
 		int pageSize = Integer.parseInt(
@@ -69,7 +71,7 @@ public class BoardPageCtrl extends HttpServlet{
 		
 		String pagingImg = BoardPage.pagingStr(totalCount, pageSize,
 				blockPage, pageNum,
-				"./boardPage.do");
+				"./commentPage.do");
 		
 		map.put("pagingImg", pagingImg);
 		map.put("totalCount", totalCount);
@@ -98,7 +100,8 @@ public class BoardPageCtrl extends HttpServlet{
 		
 		req.setAttribute("boardLists", boardLists);
 		req.setAttribute("map", map);
-		req.getRequestDispatcher("./MvcModel2/Board/BoardHome.jsp")
+		req.getRequestDispatcher("./MvcModel2/Comment/CommentHome.jsp")
 			.forward(req, resp);
 	}
+
 }

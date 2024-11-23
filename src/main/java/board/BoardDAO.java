@@ -35,40 +35,40 @@ public class BoardDAO extends DBConnPool{
 	
 	
 	//게시글 검색
-//	public List<BoardDTO> selectList(Map<String, Object> map){
-//		List<BoardDTO> board = new Vector<BoardDTO>();
-//		//쿼리
-//		String query = "SELECT * FROM board ";
-//		if (map.get("searchWord")!=null) {
-//			query += " WHERE " + map.get("searchField")
-//					+ " LIKE '%"+map.get("searchWord")+"%'";
-//		}
-//		// 내림차순 정렬
-//		query += " ORDER BY board_id DESC ";
-//		
-//		try {
-//			psmt = con.prepareStatement(query);
-//			rs = psmt.executeQuery();
-//			while(rs.next()) {
-//				BoardDTO dto = new BoardDTO();
-//				
-//				
-//				dto.setBoard_id(rs.getString(1));
-//				dto.setUser_id(rs.getString(2));
-//				dto.setTitle(rs.getString(3));
-//				dto.setContent(rs.getString(4));
-//				dto.setPostdate(rs.getString(5));
-//				dto.setVisitcount(rs.getInt(6));
-//				
-//				board.add(dto);
-//			}
-//		} catch (Exception e) {
-//			System.out.println("게시글 조회 오류");
-//			e.printStackTrace();
-//		}
-//		
-//		return board;
-//	}
+	public List<BoardDTO> selectList(Map<String, Object> map){
+		List<BoardDTO> board = new Vector<BoardDTO>();
+		//쿼리
+		String query = "SELECT * FROM board ";
+		if (map.get("searchWord")!=null) {
+			query += " WHERE " + map.get("searchField")
+					+ " LIKE '%"+map.get("searchWord")+"%'";
+		}
+		// 내림차순 정렬
+		query += " ORDER BY board_id DESC ";
+		
+		try {
+			psmt = con.prepareStatement(query);
+			rs = psmt.executeQuery();
+			while(rs.next()) {
+				BoardDTO dto = new BoardDTO();
+				
+				
+				dto.setBoard_id(rs.getString(1));
+				dto.setUser_id(rs.getString(2));
+				dto.setTitle(rs.getString(3));
+				dto.setContent(rs.getString(4));
+				dto.setPostdate(rs.getString(5));
+				dto.setVisitcount(rs.getInt(6));
+				
+				board.add(dto);
+			}
+		} catch (Exception e) {
+			System.out.println("게시글 조회 오류");
+			e.printStackTrace();
+		}
+		
+		return board;
+	}
 	
 	
 	// 글쓰기 하고 DB 저장
