@@ -118,7 +118,7 @@ public class LoginCtrl extends HttpServlet{
 					req.getRequestDispatcher("./home.do")
 						.forward(req, resp);
 				}else if(loginHome.equals("info")){
-					req.getRequestDispatcher("./userInfo.do")
+					req.getRequestDispatcher("./memberInfo.do")
 						.forward(req, resp);
 				}
 

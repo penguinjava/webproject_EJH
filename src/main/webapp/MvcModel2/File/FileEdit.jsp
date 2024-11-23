@@ -19,25 +19,20 @@
 <body>  
     <div class="container mt-5">
         <h2 class="text-center mb-4">게시글 작성</h2>
-        <form action="./listEdit.do" method="post">
+        <form action="./fileEdit.do" method="post" enctype="multipart/form-data">
         <input type="hidden" name="board_id" value="${param.board_id}" />
             <div class="mb-3">
                 <label for="title" class="form-label">제목</label>
-                <input type="text" class="form-control" id="title" name="title" value="${dto.title }" required>
+                <input type="text" class="form-control" id="title" name="title" value="${bdto.title }" required>
             </div>
             <div class="mb-3">
                 <label for="content" class="form-label">내용</label>
-                <textarea class="form-control" id="content" name="content" rows="10" required>${dto.content }</textarea>
+                <textarea class="form-control" id="content" name="content" rows="10" required>${bdto.content }</textarea>
             </div>
+            <!-- 첨부 파일 -->
             <div class="mb-3">
-                <label for="boardType" class="form-label">게시판 종류</label>
-                <!-- 임시 아직 구현 안함.. -->
-                <select class="form-select" id="boardType" name="boardType" required>
-                    <option value="자유게시판">자유게시판</option>
-                    <option value="자료실">자료실</option>
-                    <option value="Q&A 게시판">Q&A 게시판</option>
-                </select>
-                <!---------------------->
+            	<label for="ofile" class="form-label">첨부 파일</label>
+            	<input type="file" class="form-control" id="ofile" name="ofile" multiple required/>
             </div>
             <div class="text-center">
                 <button type="submit" class="btn btn-primary">수정 하기</button>

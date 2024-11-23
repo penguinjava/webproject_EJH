@@ -6,7 +6,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import board.BoardDAO;
 import board.BoardDTO;
 import file.FileDAO;
 import jakarta.servlet.ServletContext;
@@ -58,7 +57,7 @@ public class FilePageCtrl extends HttpServlet{
 				pageNum = Integer.parseInt(pageTemp);			
 			}
 			
-			//목록에 출력할 게시물 번위 계산
+			//목록에 출력할 게시물 범위 계산
 			int start = (pageNum -1) * pageSize + 1;
 			int end = pageNum * pageSize;
 			map.put("start", start);

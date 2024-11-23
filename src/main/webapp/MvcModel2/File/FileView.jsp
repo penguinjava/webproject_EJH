@@ -300,52 +300,73 @@
 		<table class="table table-striped table-hover table-bordered"
 			style="width: 90%; margin: 20px auto; font-size: 18px;">
 				<tr>
-					<th style="white-space: nowrap;">
+					<td style="white-space: nowrap;"><strong>번호</strong></td>
+					<td style="white-space: nowrap;">${bdto.board_id }</td>
+					<td style="white-space: nowrap;">
 					<button type="button" class="btn btn-danger" style="width: 200px; margin-right: 10px;"
-        				onclick="location.href='./listWrite.do';">글 작성하기</button>
-        			</th>
+        				onclick="location.href='./fileWrite.do';">글 작성하기</button>
+        			</td>
         		</tr>
         </table>
 		<!-- 내용 -->
 		<table class="table table-striped table-hover table-bordered"
 			style="width: 90%; margin: 20px auto; font-size: 18px;">
 				<tr>
-					<td style="white-space: nowrap;"><strong>번호</strong></td>
-					<td style="white-space: nowrap;">${dto.board_id }</td>
 					<td style="white-space: nowrap;"><strong>작성자</strong></td>
-					<td style="white-space: nowrap;">${dto.nickname }</td>
+					<td style="white-space: nowrap;">${bdto.nickname }</td>
 					<td style="white-space: nowrap;"><strong>작성일</strong></td>
-					<td style="white-space: nowrap;">${dto.postdate }</td>
+					<td style="white-space: nowrap;">${bdto.postdate }</td>
 				</tr>
 				<tr>
 					<td style="white-space: nowrap;"><strong>제목</strong></td>
-					<td style="white-space: nowrap;">${dto.title }</td>
+					<td style="white-space: nowrap;">${bdto.title }</td>				
 					<td style="white-space: nowrap;"><strong>조회수</strong></td>					
-					<td style="white-space: nowrap;">${dto.visitcount }</td>
+					<td style="white-space: nowrap;">${bdto.visitcount }</td>
+				</tr>
+				<tr>
+					<td style="white-space: nowrap;"><strong>첨부 내용</strong></td>
+					<td style="white-space: nowrap;">
+							${bdto.ofile }
+						<a href="./download.do?ofile=${bdto.ofile }&sfile=${bdto.sfile}&board_id=${bdto.board_id}">
+							[다운로드]
+						</a>
+						<input type="hidden" name="board_id" value="${ bdto.board_id}">
+					</td>
+					<td style="white-space: nowrap;"><strong>다운로드 수</strong></td>
+					<td style="white-space: nowrap;">${bdto.downcount }</td>
 				</tr>
 				<tr>
 					<td colspan="6" style="text-align: center; font-size: 20px;
 						width: 100%; padding: 20px;">
-    					${dto.content}
+    					${bdto.content}
 					</td>
 				</tr>
+		</table>
+		<!-- 첨부 파일 -->
+		<table class="table table-striped table-hover table-bordered"
+			style="width: 90%; margin: 20px auto; font-size: 18px;">
+			<tr>
+				<td colspan="3" height="100">
+					<img src="./Uploads/${bdto.sfile }" style="max-width:100%;"/>
+				</td>
+			</tr>
 		</table>
 		<table class="table table-striped table-hover table-bordered"
 			style="width: 90%; margin: 20px auto; font-size: 18px;">
 				<tr>
-					<c:if test="${dto.nickname eq nick }">
+					<c:if test="${bdto.nickname eq nick }">
 					<td>
 					<button type="button" class="btn btn-danger" style="width: 200px; margin-right: 10px;"
-        				onclick="location.href='./listDelete.do?board_id=${dto.board_id }';">글 삭제하기</button>
+        				onclick="location.href='./fileDelete.do?board_id=${bdto.board_id }';">글 삭제하기</button>
         			</td>
         			<td>
         			<button type="button" class="btn btn-danger" style="width: 200px; margin-right: 10px;"
-        				onclick="location.href='./listEdit.do?board_id=${dto.board_id }';">글 수정하기</button>
+        				onclick="location.href='./fileEdit.do?board_id=${bdto.board_id }';">글 수정하기</button>
         			</td>
         			</c:if>
         			<td>
         			<button type="button" class="btn btn-danger" style="width: 200px; margin-right: 10px;"
-        				onclick="location.href='./boardlist.do';">목록 보기</button>
+        				onclick="location.href='./boardPage.do';">목록 보기</button>
         			</td>
 				</tr>
 		</table>

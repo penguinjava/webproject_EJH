@@ -11,6 +11,10 @@ public class BoardDTO {
 	private int visitcount;
 	//member 테이블의 nickname;
 	private String nickname;
+	//file 테이블의 파일정보
+	private String ofile;
+	private String sfile;
+	private String downcount;
 	
 	//get&set 설정
 	public String getBoard_id() {
@@ -60,5 +64,23 @@ public class BoardDTO {
 	}
 	public void setNickname(String nickname) {
 		this.nickname = nickname;
+	}
+	public String getOfile() {
+		return ofile;
+	}
+	public void setOfile(String ofile) {
+		this.ofile = ofile;
+	}
+	public String getSfile() {
+		return sfile;
+	}
+	public void setSfile(String sfile) {
+		this.sfile = sfile;
+	}
+	public String getDowncount() {
+		return downcount;
+	}
+	public void setDowncount(String downcount) {
+		this.downcount = downcount;
 	}
 }

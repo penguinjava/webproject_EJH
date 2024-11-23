@@ -1,6 +1,6 @@
-package commend;
+package comment;
 
-public class CommendDTO {
+public class CommentDTO {
 	// commends 필드 생성
 	private String cm_id;
 	private String board_id; // board의 idx

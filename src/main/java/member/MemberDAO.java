@@ -1,7 +1,7 @@
 package member;
 
-import board.BoardDTO;
 import common.DBConnPool;
+import utils.RandomPw;
 
 public class MemberDAO extends DBConnPool{
 	// 생성자 생량
@@ -128,7 +128,8 @@ public class MemberDAO extends DBConnPool{
 	public int updateInfo(MemberDTO dto) {
 		int result = 0;
 		String query = "UPDATE member "
-				+ " SET email=?, phone_number=?, address=? "
+				+ " SET email=?, phone_number=?, address=?, "
+				+ " password=? "
 				+ " WHERE user_id=?";
 		
 		try {
@@ -136,13 +137,38 @@ public class MemberDAO extends DBConnPool{
 			psmt.setString(1, dto.getEmail());			
 			psmt.setString(2, dto.getPhone_number());			
 			psmt.setString(3, dto.getAddress());
-			psmt.setString(4, dto.getUser_id());
+			psmt.setString(4, dto.getPassword());
+			psmt.setString(5, dto.getUser_id());
 			
 			// 업데이트 실행
 			result = psmt.executeUpdate();
 			System.out.println(result);
 		} catch (Exception e) {
 			System.out.println("수정중 오류 발생");
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
+	
+	//비밀번호 찾기
+	public int changePw(String user_id,String user_name) {
+		int result = 0;
+		RandomPw pw = new RandomPw();
+		String rpw = pw.pw();
+		
+		String query = "UPDATE member "
+				+ "	SET password=? "
+				+ " WHERE user_id=?, and user_name=?";
+		
+		try {
+			psmt = con.prepareStatement(query);
+			psmt.setString(1, rpw);
+			psmt.setString(2, user_id);
+			psmt.setString(2, user_name);
+			result = psmt.executeUpdate();
+		} catch (Exception e) {
+			System.out.println("비밀번호 변경 실패");
 			e.printStackTrace();
 		}
 		return result;

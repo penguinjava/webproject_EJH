@@ -167,7 +167,7 @@
 				<h4 class="d-flex justify-content-between align-items-center mb-3">
 					<span class="text-primary">Search</span>
 				</h4>
-				<form role="search" action="./home.do" method="get"
+				<form role="search" action="./boardPage.do" method="get"
 					class="d-flex mt-3 gap-0">
 					<input class="form-control rounded-start rounded-0 bg-light"
 						type="email" placeholder="What are you looking for?"
@@ -184,30 +184,27 @@
 
 				<div class="col-sm-4 col-lg-3 text-center text-sm-start">
 					<div class="main-logo">
-						<a href="index.html"> <img src="images/logo.png" alt="logo"
+						<a href="./home.do"> <img src="images/logo.png" alt="logo"
 							class="img-fluid">
 						</a>
 					</div>
 				</div>
-
 				<div
 					class="col-sm-6 offset-sm-2 offset-md-0 col-lg-5 d-none d-lg-block">
 					<div class="search-bar row bg-light p-2 my-2 rounded-4">
+						<form id="search-form" class="text-center" action="./boardPage.do" method="get">
 						<div class="col-md-4 d-none d-md-block">
-							<select class="form-select border-0 bg-transparent">
-								<option>전체</option>
-								<option>자유게시판</option>
-								<option>자료실</option>
-								<option>Q&A 게시판</option>
+							<select class="form-select border-0 bg-transparent" name="searchField">
+								<option value="board">자유게시판</option>
+								<option value="file">자료실</option>
+								<option value="comment">Q&A 게시판</option>
 							</select>
 						</div>
 						<div class="col-11 col-md-7">
-							<form id="search-form" class="text-center" action=""
-								method="post">
 								<input type="text" class="form-control border-0 bg-transparent"
-									placeholder="Search for more than 20,000 products" />
-							</form>
+									placeholder="검색" name="searchWord"/>
 						</div>
+						</form>
 						<div class="col-1">
 							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
 								viewBox="0 0 24 24">
@@ -277,16 +274,15 @@
 
 								<ul
 									class="navbar-nav justify-content-end menu-list list-unstyled d-flex gap-md-3 mb-0">
-									<li class="nav-item active"><a href="./boardlist.do"
+									<li class="nav-item active"><a href="./boardPage.do"
 										class="nav-link">자유게시판</a></li>
-									<li class="nav-item dropdown"><a href="./filelist.do"
+									<li class="nav-item dropdown"><a href="./filePage.do"
 										class="nav-link">자료실</a></li>
-									<li class="nav-item"><a href="./commendlist.do"
+									<li class="nav-item"><a href="./commentPage.do"
 										class="nav-link">Q&A게시판</a></li>
 								</ul>
 
 							</div>
-
 						</div>
 				</div>
 			</div>
@@ -295,63 +291,53 @@
 
 	<section class="py-3"
 		style="background-image: url('images/background-pattern.jpg'); background-repeat: no-repeat; background-size: cover;">
-
-		<!-- 글쓰기 작성 버튼 -->
+		<h1 style="text-align: center;"><strong>자유 게시판</strong></h1>
+        
+		<!-- 목록 -->
 		<table class="table table-striped table-hover table-bordered"
 			style="width: 90%; margin: 20px auto; font-size: 18px;">
+			<thead class="thead-dark">
 				<tr>
-					<th style="white-space: nowrap;">
+					<th style="white-space: nowrap;">번호</th>
+					<th style="white-space: nowrap;">제목</th>
+					<th style="white-space: nowrap;">작성자</th>
+					<th style="white-space: nowrap;">조회수</th>
+					<th style="white-space: nowrap;">작성일</th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:choose>
+					<c:when test="${empty boardLists}">
+						<tr>
+							<td colspan="6" style="text-align: center;">등록된 게시물이 없습니다.</td>
+						</tr>
+					</c:when>
+					<c:otherwise>
+						<c:forEach items="${boardLists}" var="row" varStatus="loop">
+							<tr>
+								<td>${map.totalCount - (((map.pageNum-1) * map.pageSize) + loop.index)}</td>
+								<td align="left">
+									<a href="./boardView.do?board_id=${row.board_id}"> ${row.title}</a></td>
+								<td>${row.user_id}</td>
+								<td>${row.visitcount}</td>
+								<td>${row.postdate }</td>
+							</tr>
+						</c:forEach>
+					</c:otherwise>
+				</c:choose>
+			</tbody>
+		</table >
+		<!--  여기에 페이지 추가 -->
+		<table class="table table-striped table-hover table-bordered">
+			<tr align="center">
+				<td>${map.pagingImg }<td>
+				<!-- 글쓰기 작성 버튼 -->
+				<th style="white-space: nowrap;">
 					<button type="button" class="btn btn-danger" style="width: 200px; margin-right: 10px;"
-        				onclick="location.href='./listWrite.do';">글 작성하기</button>
-        			</th>
-        		</tr>
-        </table>
-		<!-- 내용 -->
-		<table class="table table-striped table-hover table-bordered"
-			style="width: 90%; margin: 20px auto; font-size: 18px;">
-				<tr>
-					<td style="white-space: nowrap;"><strong>번호</strong></td>
-					<td style="white-space: nowrap;">${dto.board_id }</td>
-					<td style="white-space: nowrap;"><strong>작성자</strong></td>
-					<td style="white-space: nowrap;">${dto.nickname }</td>
-					<td style="white-space: nowrap;"><strong>작성일</strong></td>
-					<td style="white-space: nowrap;">${dto.postdate }</td>
-				</tr>
-				<tr>
-					<td style="white-space: nowrap;"><strong>제목</strong></td>
-					<td style="white-space: nowrap;">${dto.title }</td>
-					<td style="white-space: nowrap;"><strong>조회수</strong></td>					
-					<td style="white-space: nowrap;">${dto.visitcount }</td>
-				</tr>
-				<tr>
-					<td colspan="6" style="text-align: center; font-size: 20px;
-						width: 100%; padding: 20px;">
-    					${dto.content}
-					</td>
-				</tr>
+        				onclick="location.href='./boardWrite.do';">글 작성하기</button>
+        		</th>
+			</tr>
 		</table>
-		<table class="table table-striped table-hover table-bordered"
-			style="width: 90%; margin: 20px auto; font-size: 18px;">
-				<tr>
-					<c:if test="${dto.nickname eq nick }">
-					<td>
-					<button type="button" class="btn btn-danger" style="width: 200px; margin-right: 10px;"
-        				onclick="location.href='./listDelete.do?board_id=${dto.board_id }';">글 삭제하기</button>
-        			</td>
-        			<td>
-        			<button type="button" class="btn btn-danger" style="width: 200px; margin-right: 10px;"
-        				onclick="location.href='./listEdit.do?board_id=${dto.board_id }';">글 수정하기</button>
-        			</td>
-        			</c:if>
-        			<td>
-        			<button type="button" class="btn btn-danger" style="width: 200px; margin-right: 10px;"
-        				onclick="location.href='./boardlist.do';">목록 보기</button>
-        			</td>
-				</tr>
-		</table>
-
-
-
 	</section>
 	<script src="js/jquery-1.11.0.min.js"></script>
 	<script

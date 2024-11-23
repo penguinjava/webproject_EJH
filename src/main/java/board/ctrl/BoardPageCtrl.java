@@ -100,7 +100,7 @@ public class BoardPageCtrl extends HttpServlet{
 		
 		req.setAttribute("boardLists", boardLists);
 		req.setAttribute("map", map);
-		req.getRequestDispatcher("./MvcModel2/List/ListHome.jsp")
+		req.getRequestDispatcher("./MvcModel2/Board/BoardHome.jsp")
 			.forward(req, resp);
 	}
 }

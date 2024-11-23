@@ -218,20 +218,6 @@
 								<svg width="24" height="24" viewBox="0 0 24 24">
 									<use xlink:href="#heart"></use></svg>
 						</a></li>
-						<li class="d-lg-none"><a href="#"
-							class="rounded-circle bg-light p-2 mx-1"
-							data-bs-toggle="offcanvas" data-bs-target="#offcanvasCart"
-							aria-controls="offcanvasCart"> <svg width="24" height="24"
-									viewBox="0 0 24 24">
-									<use xlink:href="#cart"></use></svg>
-						</a></li>
-						<li class="d-lg-none"><a href="#"
-							class="rounded-circle bg-light p-2 mx-1"
-							data-bs-toggle="offcanvas" data-bs-target="#offcanvasSearch"
-							aria-controls="offcanvasSearch"> <svg width="24" height="24"
-									viewBox="0 0 24 24">
-									<use xlink:href="#search"></use></svg>
-						</a></li>
 					</ul>
 				</div>
 
@@ -242,7 +228,6 @@
 				<div
 					class="d-flex  justify-content-center justify-content-sm-between align-items-center">
 					<nav class="main-menu d-flex navbar navbar-expand-lg">
-
 						<button class="navbar-toggler" type="button"
 							data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
 							aria-controls="offcanvasNavbar">
@@ -265,13 +250,14 @@
 										class="nav-link">자유게시판</a></li>
 									<li class="nav-item dropdown"><a href="./filePage.do"
 										class="nav-link">자료실</a></li>
-									<li class="nav-item"><a href="./commendlist.do"
+									<li class="nav-item"><a href="./commendPage.do"
 										class="nav-link">Q&A게시판</a></li>
 								</ul>
 
 							</div>
 
 						</div>
+					</nav>
 				</div>
 			</div>
 		</div>
@@ -357,9 +343,12 @@
 										<!-- form -->
 										<form action="./login.do" method="post" class="p-4">
 											<div class="mb-3">
-												<label for="user_id" class="form-label text-dark">회원 ID
-												</label> <input type="text" id="user_id" name="user_id"
-													class="form-control" placeholder="ID" required>
+												<label for="user_id" class="form-label text-dark">회원 ID</label>
+												<input type="text" id="user_id" name="user_id" class="form-control"
+               											placeholder="ID" value="${cookieId }" required />
+            									<input type="checkbox" name="rememberId" id="rememberId" 
+            											class="form-check-input" ${cookieId != null ? "checked" : ""} />
+            									<label for="rememberId" class="form-check-label" style="color: black;">아이디 저장하기</label>
 											</div>
 											<div class="mb-3">
 												<label for="password" class="form-label text-dark">회원 비밀번호</label>
@@ -373,7 +362,7 @@
 												<a href="" class="nav-link text-dark">아이디 찾기</a>
 											</div>
 											<div class="text-center">
-												<a href="" class="nav-link text-dark">비밀번호 찾기</a>
+												<a href="./searchPw.do" class="nav-link text-dark">비밀번호 찾기</a>
 											</div>
 											<div class="text-center mt-4">
 												<a href="./create.do" class="btn btn-secondary">회원 가입</a>

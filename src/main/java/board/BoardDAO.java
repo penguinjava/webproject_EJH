@@ -97,7 +97,6 @@ public class BoardDAO extends DBConnPool{
 	
 	
 	// 글쓰기 뷰를 select 식별
-	
 	public BoardDTO listView(String board_id) {
 		BoardDTO dto = new BoardDTO();
 		

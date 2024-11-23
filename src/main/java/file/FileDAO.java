@@ -77,9 +77,9 @@ public class FileDAO extends DBConnPool{
 					+ " SELECT Tb.*, ROWNUM rNum FROM ( "
 					+ " SELECT * FROM board ";
 		if(map.get("searchWord") != null) {
-				query +=" WHERE category= " + map.get("searchFild")
-					+ " AND title "
-					+ " LIKE '%" + map.get("searchWord") + "%'";
+				query +=" WHERE " + map.get("searchField")
+					+ " LIKE '%" + map.get("searchWord") + "%' "
+							+ " AND category='file' ";
 		}else {
 			query += " WHERE category='file' ";
 		}
@@ -120,8 +120,9 @@ public class FileDAO extends DBConnPool{
 		int totalCount =0;
 		String query = "SELECT COUNT(*) FROM board ";
 		if (map.get("searchWord")!=null) {
-			query += " WHERE category= " + map.get("searchField")
-					+ " AND LIKE '%"+map.get("searchWord")+"%'";
+			query += " WHERE " + map.get("searchField")
+					+ " LIKE '%"+map.get("searchWord")+"%' "
+							+ " AND category='file' ";
 		}else {
 			query += " WHERE category='file' ";
 		}
@@ -132,9 +133,86 @@ public class FileDAO extends DBConnPool{
 			rs.next();
 			totalCount = rs.getInt(1);
 		} catch (Exception e) {
-			System.out.println("게시문 카운트 오류!");
+			System.out.println("게시물 카운트 오류!");
 			e.printStackTrace();
 		}
 		return totalCount;
 	}
+	
+	
+	// 글쓰기 뷰를 select 식별
+	public BoardDTO listView(String board_id) {
+		BoardDTO bdto = new BoardDTO();
+		String query = "select B.*, M.nickname, "
+				+ " ofile, sfile, downcount "
+				+ " from board B "
+				+ " inner join member M "
+				+ "		on B.user_id=M.user_id "
+				+ " inner join files F "
+				+ "		on B.board_id=F.board_id "
+				+ " where B.board_id=? ";
+		
+		// 인파라미터 설정
+		try {
+			psmt = con.prepareStatement(query);
+			psmt.setString(1, board_id);
+			rs = psmt.executeQuery();
+			
+			//board_id의 결과는 하나만 나옴
+			if (rs.next()) {
+				bdto.setBoard_id(rs.getString(1));
+				bdto.setUser_id(rs.getString(2));
+				bdto.setTitle(rs.getString(3));
+				bdto.setContent(rs.getString(4));
+				bdto.setPostdate(rs.getString(5));
+				bdto.setVisitcount(rs.getInt(6));
+				bdto.setCategory(rs.getString(7));
+				bdto.setNickname(rs.getString(8));
+				bdto.setOfile(rs.getString(9));
+				bdto.setSfile(rs.getString(10));
+				bdto.setDowncount(rs.getString(11));
+			}
+		} catch (Exception e) {
+			System.out.println("뷰에 접근중 오류.");
+			e.printStackTrace();
+		}
+		return bdto;
+	}
+	
+	
+	//다운로드 카운트
+	public void downCount(String board_id) {
+		String query = "UPDATE files "
+				+ " SET downcount=downcount+1 "
+				+ " WHERE board_id=? ";
+		
+		try {
+			psmt = con.prepareStatement(query);
+			psmt.setString(1, board_id);
+			psmt.executeUpdate();
+		} catch (Exception e) {}
+	}
+	
+	
+	//파일 수정 업데이트
+	public int updateFile(FileDTO fdto) {
+		int result = 0;
+		try {
+			String query = "UPDATE files "
+					+ " SET ofile=?, sfile=? "
+					+ " WHERE board_id=?";
+			
+			//쿼리문 준비
+			psmt = con.prepareStatement(query);
+			psmt.setString(1, fdto.getOfile());
+			psmt.setString(2, fdto.getSfile());
+			psmt.setString(3, fdto.getBoard_id());
+
+		} catch (Exception e) {
+			System.out.println("게시물 업데이트");
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
 }

@@ -30,8 +30,7 @@ CREATE TABLE files (
     ofile VARCHAR2(255) NOT NULL,     -- 오리지널 파일 이름
     sfile VARCHAR2(255) NOT NULL,     -- 저장 파일 이름
     downcount NUMBER DEFAULT 0,       -- 다운로드 수 (기본값 0)
-    upload_date DATE DEFAULT SYSDATE, -- 업로드 날짜 (기본값 현재 날짜)
-    CONSTRAINT fk_board FOREIGN KEY (board_id) REFERENCES board(board_id) -- 외래 키 설정
+    upload_date DATE DEFAULT SYSDATE -- 업로드 날짜 (기본값 현재 날짜)
 );
 
 --file_id 시퀀스 작성
@@ -54,13 +53,32 @@ create sequence board_seq
     nocycle
     nocache;
 
+
+--조인
+select B.*, M.nickname, ofile, sfile, downcount
+from board B
+inner join member M
+    on B.user_id=M.user_id
+inner join files F
+    on B.board_id=F.board_id
+where B.board_id=317;
+    
+    
+--외래키 지정
+alter table files
+add constraint fk_files_board
+FOREIGN key (board_id)
+REFERENCES board(board_id)
+on DELETE cascade;
+
 --commit
 commit;
 
 --member 삭제
 drop table member;
 drop table board;
-drop table commends;
+drop table files;
+drop table comment;
 
 select * from member;
 select * from board;

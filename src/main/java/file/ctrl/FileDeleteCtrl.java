@@ -1,9 +1,8 @@
-package board.ctrl;
+package file.ctrl;
 
 import java.io.IOException;
 
 import board.BoardDAO;
-import board.BoardDTO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -12,10 +11,10 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import utils.JSFunction;
 
-@WebServlet("/listDelete.do")
-public class ListDeleteController extends HttpServlet{
+@WebServlet("/fileDelete.do")
+public class FileDeleteCtrl extends HttpServlet{
 	private static final long serialVersionUID = 1L;
-
+	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
@@ -27,23 +26,23 @@ public class ListDeleteController extends HttpServlet{
 		return;
 		}
 		
-		//게시물 얻어오기
-		String board_id = req.getParameter("board_id");
-		BoardDAO dao = new BoardDAO();
-		dao.listView(board_id);
+		//게시물 가져오기
+		String board_id  = req.getParameter("board_id");
+		BoardDAO bdao = new BoardDAO();
+		bdao.listView(board_id);
 		
-		// 작성자 확인은 EL로 처리
-		int result = dao.deleteList(board_id);
-		dao.close();
+		//작성자 el에서 확인
 		
+		//외래키로 cascade로 관련테이블 삭제
+		int bresult = bdao.deleteList(board_id);
+		bdao.close();
 		
-		if(result==1) {
+		if(bresult==1) {
 			//삭제 알림
 			JSFunction.alertLocation(resp, "삭제 했습니다.",
-					"./boardPage.do");
+					"./filePage.do");
 		}else {
 			JSFunction.alertBack(resp, "삭제 실패");
 		}
-		
 	}
 }

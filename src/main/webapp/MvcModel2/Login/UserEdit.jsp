@@ -53,7 +53,16 @@
 								<div class="mb-3">
 									<label for="user_name" 
 									class="form-label text-dark">회원 이름</label>
-									<span style="color: black;"> : ${dto.user_name }</span>s
+									<span style="color: black;"> : ${dto.user_name }</span>
+								</div>
+								
+								<!-- 비밀번호 -->
+								<div class="mb-3">
+									<label for="password" 
+									class="form-label text-dark">비밀번호</label>
+									<input type="hidden" name="beforepw" value="${dto.password }"/>
+									<input type="password" id="password" name="password" class="form-control"
+										placeholder="변경할 비밀번호입력">
 								</div>
 
 								<!-- 닉네임 -->
@@ -65,7 +74,8 @@
 								<!-- 이메일 -->
 								<div class="mb-3">
 									<label for="email" class="form-label text-dark">기존 Email</label>
-										<span style="color: black;"> : ${dto.email}</span>	
+										<span style="color: black;"> : ${dto.email}</span>
+										<input type="hidden" name="beforeemail" value="${dto.email }"/>
 									<input type="email" id="email" name="email" class="form-control"
 										placeholder="xxx@xxx.com">
 								</div>
@@ -74,6 +84,7 @@
 								<div class="mb-3">
 									<label for="phone_number" class="form-label text-dark">기존 번호</label>
 										<span style="color: black;"> : ${dto.phone_number }</span>
+										<input type="hidden" name="beforephone" value="${dto.phone_number }"/>
 									<p style="color: black;">010 - 
 									<input type="text" id="f_number" name="f_number" class="form-control" 
            									placeholder="앞" maxlength="4" oninput="앞자리" 
@@ -94,6 +105,7 @@
 								<div class="mb-3">
     								<label for="address" class="form-label text-dark">기존 사는 지역</label>
     									<span style="color: black;"> : ${dto.address }</span>
+    									<input type="hidden" name="beforeaddress" value="${dto.address }"/>
     								<label for="address" class="form-label text-dark">수정 지역을 선택하세요</label>
     								<select id="address" name="address" class="form-control">
         								<option value="서울특별시">서울특별시</option>

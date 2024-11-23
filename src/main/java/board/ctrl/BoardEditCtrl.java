@@ -13,7 +13,7 @@ import jakarta.servlet.http.HttpSession;
 import utils.JSFunction;
 
 @WebServlet("/listEdit.do")
-public class ListEditController extends HttpServlet{
+public class BoardEditCtrl extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 	
 	@Override
@@ -37,7 +37,7 @@ public class ListEditController extends HttpServlet{
 		//본인확인은 JSP에서 EL로 처리
 		
 		req.setAttribute("dto", dto);
-		req.getRequestDispatcher("./MvcModel2/List/ListEdit.jsp")
+		req.getRequestDispatcher("./MvcModel2/List/BoardEdit.jsp")
 			.forward(req, resp);
 	}
 	

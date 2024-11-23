@@ -167,7 +167,7 @@
 				<h4 class="d-flex justify-content-between align-items-center mb-3">
 					<span class="text-primary">Search</span>
 				</h4>
-				<form role="search" action="./boardPage.do" method="get"
+				<form role="search" action="./home.do" method="get"
 					class="d-flex mt-3 gap-0">
 					<input class="form-control rounded-start rounded-0 bg-light"
 						type="email" placeholder="What are you looking for?"
@@ -184,17 +184,18 @@
 
 				<div class="col-sm-4 col-lg-3 text-center text-sm-start">
 					<div class="main-logo">
-						<a href="./home.do"> <img src="images/logo.png" alt="logo"
+						<a href="index.html"> <img src="images/logo.png" alt="logo"
 							class="img-fluid">
 						</a>
 					</div>
 				</div>
+
 				<div
 					class="col-sm-6 offset-sm-2 offset-md-0 col-lg-5 d-none d-lg-block">
 					<div class="search-bar row bg-light p-2 my-2 rounded-4">
 						<div class="col-md-4 d-none d-md-block">
 							<select class="form-select border-0 bg-transparent">
-								<option >전체</option>
+								<option>전체</option>
 								<option>자유게시판</option>
 								<option>자료실</option>
 								<option>Q&A 게시판</option>
@@ -276,15 +277,16 @@
 
 								<ul
 									class="navbar-nav justify-content-end menu-list list-unstyled d-flex gap-md-3 mb-0">
-									<li class="nav-item active"><a href="./boardPage.do"
+									<li class="nav-item active"><a href="./boardlist.do"
 										class="nav-link">자유게시판</a></li>
-									<li class="nav-item dropdown"><a href="./filePage.do"
+									<li class="nav-item dropdown"><a href="./filelist.do"
 										class="nav-link">자료실</a></li>
-									<li class="nav-item"><a href="./commendPage.do"
+									<li class="nav-item"><a href="./commentlist.do"
 										class="nav-link">Q&A게시판</a></li>
 								</ul>
 
 							</div>
+
 						</div>
 				</div>
 			</div>
@@ -293,65 +295,63 @@
 
 	<section class="py-3"
 		style="background-image: url('images/background-pattern.jpg'); background-repeat: no-repeat; background-size: cover;">
-		<h1 style="text-align: center;"><strong>자유 게시판</strong></h1>
-		<!-- 검색 폼 임시 -->
-		<form method="GET" class="mb-4" style="text-align: center;">
-			<div class="input-group" style="max-width: 600px; margin: 0 auto;">
-				<select name="searchFild" class="form-select border-0 bg-transparent">
-					<option value="title">제목</option>
-					<option value="content">내용</option>
-				</select>
-				<input type="text" name="searchWord" class="form-control"
-					placeholder="검색하기" />
-				<button type="submit" class="btn btn-outline-primary">검색하기</button>
-			</div>
-		</form>
-        
-		<!-- 목록 -->
+
+		<!-- 글쓰기 작성 버튼 -->
 		<table class="table table-striped table-hover table-bordered"
 			style="width: 90%; margin: 20px auto; font-size: 18px;">
-			<thead class="thead-dark">
 				<tr>
-					<th style="white-space: nowrap;">번호</th>
-					<th style="white-space: nowrap;">제목</th>
-					<th style="white-space: nowrap;">작성자</th>
-					<th style="white-space: nowrap;">조회수</th>
-					<th style="white-space: nowrap;">작성일</th>
-				</tr>
-			</thead>
-			<tbody>
-				<c:choose>
-					<c:when test="${empty boardLists}">
-						<tr>
-							<td colspan="6" style="text-align: center;">등록된 게시물이 없습니다.</td>
-						</tr>
-					</c:when>
-					<c:otherwise>
-						<c:forEach items="${boardLists}" var="row" varStatus="loop">
-							<tr>
-								<td>${map.totalCount - (((map.pageNum-1) * map.pageSize) + loop.index)}</td>
-								<td align="left">
-									<a href="./listView.do?board_id=${row.board_id}"> ${row.title}</a></td>
-								<td>${row.user_id}</td>
-								<td>${row.visitcount}</td>
-								<td>${row.postdate }</td>
-							</tr>
-						</c:forEach>
-					</c:otherwise>
-				</c:choose>
-			</tbody>
-		</table >
-		<!--  여기에 페이지 추가 -->
-		<table class="table table-striped table-hover table-bordered">
-			<tr align="center">
-				<td>${map.pagingImg }<td>
-				<!-- 글쓰기 작성 버튼 -->
-				<th style="white-space: nowrap;">
+					<th style="white-space: nowrap;">
 					<button type="button" class="btn btn-danger" style="width: 200px; margin-right: 10px;"
         				onclick="location.href='./listWrite.do';">글 작성하기</button>
-        		</th>
-			</tr>
+        			</th>
+        		</tr>
+        </table>
+		<!-- 내용 -->
+		<table class="table table-striped table-hover table-bordered"
+			style="width: 90%; margin: 20px auto; font-size: 18px;">
+				<tr>
+					<td style="white-space: nowrap;"><strong>번호</strong></td>
+					<td style="white-space: nowrap;">${dto.board_id }</td>
+					<td style="white-space: nowrap;"><strong>작성자</strong></td>
+					<td style="white-space: nowrap;">${dto.nickname }</td>
+					<td style="white-space: nowrap;"><strong>작성일</strong></td>
+					<td style="white-space: nowrap;">${dto.postdate }</td>
+				</tr>
+				<tr>
+					<td style="white-space: nowrap;"><strong>제목</strong></td>
+					<td style="white-space: nowrap;">${dto.title }</td>
+					<td style="white-space: nowrap;"><strong>조회수</strong></td>					
+					<td style="white-space: nowrap;">${dto.visitcount }</td>
+				</tr>
+				<tr>
+					<td colspan="6" style="text-align: center; font-size: 20px;
+						width: 100%; padding: 20px;">
+    					${dto.content}
+					</td>
+				</tr>
 		</table>
+		<table class="table table-striped table-hover table-bordered"
+			style="width: 90%; margin: 20px auto; font-size: 18px;">
+				<tr>
+					<c:if test="${dto.nickname eq nick }">
+					<td>
+					<button type="button" class="btn btn-danger" style="width: 200px; margin-right: 10px;"
+        				onclick="location.href='./boardDelete.do?board_id=${dto.board_id }';">글 삭제하기</button>
+        			</td>
+        			<td>
+        			<button type="button" class="btn btn-danger" style="width: 200px; margin-right: 10px;"
+        				onclick="location.href='./boardEdit.do?board_id=${dto.board_id }';">글 수정하기</button>
+        			</td>
+        			</c:if>
+        			<td>
+        			<button type="button" class="btn btn-danger" style="width: 200px; margin-right: 10px;"
+        				onclick="location.href='./boardlist.do';">목록 보기</button>
+        			</td>
+				</tr>
+		</table>
+
+
+
 	</section>
 	<script src="js/jquery-1.11.0.min.js"></script>
 	<script

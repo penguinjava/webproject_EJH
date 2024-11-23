@@ -11,8 +11,8 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet("/listView.do")
-public class ListViewController extends HttpServlet{
+@WebServlet("/boardView.do")
+public class BoardViewCtrl extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 	
 	@Override
@@ -41,8 +41,6 @@ public class ListViewController extends HttpServlet{
 			dto.setPostdate(date[0]);
 		}
 		
-		req.setAttribute("dto", dto);
-		
 		
 		//게시글 내용 줄바꿈처리
 		dto.setContent(dto.getContent()
@@ -51,7 +49,7 @@ public class ListViewController extends HttpServlet{
 		//포워드
 		req.setAttribute("today", today);
 		req.setAttribute("dto", dto);
-		req.getRequestDispatcher("./MvcModel2/List/ListView.jsp")
+		req.getRequestDispatcher("./MvcModel2/Board/BoardView.jsp")
 				.forward(req, resp);
 	}
 }

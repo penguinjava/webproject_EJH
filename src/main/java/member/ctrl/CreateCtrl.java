@@ -68,10 +68,11 @@ public class CreateCtrl extends HttpServlet{
 		// 회원가입 성공 여부
 		if (result == 1) {
 			System.out.println("회원가입 성공");
-			req.getRequestDispatcher("index.jsp")
+			req.getRequestDispatcher("./home.do")
 			.forward(req, resp);
 		}else {
 			System.out.println("실패");
+			resp.sendRedirect("./create.do");
 		}
 	}
 }

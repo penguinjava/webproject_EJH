@@ -13,8 +13,8 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import utils.JSFunction;
 
-@WebServlet("/listWrite.do")
-public class ListWriteController extends HttpServlet{
+@WebServlet("/boardWrite.do")
+public class BoardWriteCtrl extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 	
 	
@@ -27,7 +27,7 @@ public class ListWriteController extends HttpServlet{
 			JSFunction.alertLocation(resp, "로그인 하세요",
 					"./login.do");
 		}else {
-			req.getRequestDispatcher("./MvcModel2/List/ListWrite.jsp")
+			req.getRequestDispatcher("./MvcModel2/Board/BoardWrite.jsp")
 				.forward(req, resp);
 		}	
 	}
@@ -57,11 +57,11 @@ public class ListWriteController extends HttpServlet{
 			
 			// 성공 or 실패?
 			if (result == 1) {  // 글쓰기 성공
-				resp.sendRedirect("./boardlist.do");
+				resp.sendRedirect("./boardPage.do");
 			}
 			else {  // 글쓰기 실패
 				JSFunction.alertLocation(resp, "글쓰기에 실패했습니다.",
-						"/listWrite.do");
+						"./boardWrite.do");
 			}
 		}catch (Exception e) {
 			System.out.println("글쓰기 오류");

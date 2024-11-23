@@ -56,10 +56,18 @@ public class FileWriteCtrl extends HttpServlet{
 			String saveDirectory = getServletContext()
 					.getRealPath("/Uploads");
 			
-			System.out.println(saveDirectory);
+//			System.out.println(saveDirectory);
 			
-			ArrayList<String> listFileName = FileUtil
-					.multipleFile(req, saveDirectory);
+			String originalFileName = "";
+			try {
+				originalFileName = FileUtil
+						.uploadFile(req, saveDirectory);
+				
+			} catch (Exception e) {
+				JSFunction.alertBack(resp, "파일업로드 오류");
+				
+				return;
+			}
 			
 			//board 와 file DTO / DAO 가져오기
 			BoardDTO bdto = new BoardDTO();
@@ -79,22 +87,20 @@ public class FileWriteCtrl extends HttpServlet{
 			
 			System.out.println("게시판 고유번호 : " + board_id);
 			
-			for(String originalFileName : listFileName) {
 				
-				if(originalFileName != "") {
-					String savedFileName = FileUtil
-							.renameFile(saveDirectory, originalFileName);
-					
-					fdto.setOfile(originalFileName);
-					fdto.setSfile(savedFileName);
+			if(originalFileName != "") {
+				String savedFileName = FileUtil
+						.renameFile(saveDirectory, originalFileName);	
+				fdto.setOfile(originalFileName);
+				fdto.setSfile(savedFileName);
 				}
-			}
 			
 			int fresult = fdao.saveFile(fdto);
+			System.out.println("파일테이블에 저장 :" + fresult);
 			bdao.close();
 			fdao.close();
 			
-			if(bresult == 1|| fresult == 2) {
+			if(bresult == 1|| fresult == 1) {
 				resp.sendRedirect("./filePage.do");
 			}else{
 				JSFunction.alert(resp, "게시글 작성 실패");
