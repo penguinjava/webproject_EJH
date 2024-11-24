@@ -189,30 +189,7 @@
 						</a>
 					</div>
 				</div>
-				<div
-					class="col-sm-6 offset-sm-2 offset-md-0 col-lg-5 d-none d-lg-block">
-					<div class="search-bar row bg-light p-2 my-2 rounded-4">
-						<form id="search-form" class="text-center" action="./boardPage.do" method="get">
-						<div class="col-md-4 d-none d-md-block">
-							<select class="form-select border-0 bg-transparent" name="searchField">
-								<option value="board">자유게시판</option>
-								<option value="file">자료실</option>
-								<option value="comment">Q&A 게시판</option>
-							</select>
-						</div>
-						<div class="col-11 col-md-7">
-								<input type="text" class="form-control border-0 bg-transparent"
-									placeholder="검색" name="searchWord"/>
-						</div>
-						</form>
-						<div class="col-1">
-							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-								viewBox="0 0 24 24">
-								<path fill="currentColor"
-									d="M21.71 20.29L18 16.61A9 9 0 1 0 16.61 18l3.68 3.68a1 1 0 0 0 1.42 0a1 1 0 0 0 0-1.39ZM11 18a7 7 0 1 1 7-7a7 7 0 0 1-7 7Z" /></svg>
-						</div>
-					</div>
-				</div>
+
 
 				<div
 					class="col-sm-8 col-lg-4 d-flex justify-content-end gap-5 align-items-center mt-4 mt-sm-0 justify-content-center justify-content-sm-end">
@@ -292,6 +269,19 @@
 	<section class="py-3"
 		style="background-image: url('images/background-pattern.jpg'); background-repeat: no-repeat; background-size: cover;">
 		<h1 style="text-align: center;"><strong>Q&A 게시판</strong></h1>
+        
+        <!-- 검색 폼 -->
+		<form action="./filePage.do" method="GET" class="mb-4" style="text-align: center;">
+			<div class="input-group" style="max-width: 600px; margin: 0 auto;">
+				<select name="searchField" class="form-select border-0 bg-transparent">
+					<option value="title">제목</option>
+					<option value="content">내용</option>
+				</select>
+				<input type="text" name="searchWord" class="form-control"
+					placeholder="검색하기" />
+				<button type="submit" class="btn btn-outline-primary">검색하기</button>
+			</div>
+		</form>
         
 		<!-- 목록 -->
 		<table class="table table-striped table-hover table-bordered"

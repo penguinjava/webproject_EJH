@@ -73,9 +73,9 @@ public class CommentDAO extends DBConnPool{
 					+ " SELECT Tb.*, ROWNUM rNum FROM ( "
 					+ " SELECT * FROM board ";
 		if(map.get("searchWord") != null) {
-				query +=" WHERE category=" + map.get("searchFild")
-					+ " AND title "
-					+ " LIKE '%" + map.get("searchWord") + "%'";
+				query +=" WHERE " + map.get("searchField")
+					+ " LIKE '%" + map.get("searchWord") + "%' "
+					+ " AND category='comment' ";
 		}else {
 			query += " WHERE category='comment' ";
 		}
@@ -116,8 +116,9 @@ public class CommentDAO extends DBConnPool{
 		int totalCount =0;
 		String query = "SELECT COUNT(*) FROM board ";
 		if (map.get("searchWord")!=null) {
-			query += " WHERE category= " + map.get("searchField")
-					+ " AND LIKE '%"+map.get("searchWord")+"%'";
+			query += " WHERE " + map.get("searchField")
+					+ " LIKE '%"+map.get("searchWord")+"%' "
+					+ " AND category='comment' ";
 		}else {
 			query += " WHERE category='comment' ";
 		}

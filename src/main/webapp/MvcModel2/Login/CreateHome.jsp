@@ -48,11 +48,12 @@
 									<span style="color: red;">*</span> 회원 ID </label>
 									<input type="text" id="user_id" name="user_id"
 										class="form-control" placeholder="아이디" 
-										oninput="check('user_id', this.value);">
+										oninput="check('user_id', this.value);"
+										minlength="4" maxlength="12" />
 									<div id="Message"></div>
 								</div>
 								
-								<!-- 아이디 -->
+								<!-- 회원 이름 -->
 								<div class="mb-3">
 									<label for="user_name" class="form-label text-dark"> <span
 										style="color: red;">*</span> 회원 이름
@@ -153,7 +154,6 @@
 		</div>
 	</div>
 	</div>
-	
 	<script src="js/Check.js"></script>
 </body>
 </html>
