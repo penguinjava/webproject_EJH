@@ -98,7 +98,7 @@ commit;
 drop table member;
 drop table board;
 drop table files;
-drop table comment;
+drop table comments;
 
 select * from member;
 select * from board;
