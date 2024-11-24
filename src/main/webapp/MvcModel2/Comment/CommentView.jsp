@@ -335,6 +335,10 @@
 				<tr>
 					<c:if test="${bdto.nickname eq nick }">
 					<td>
+					<button type="button" id="like" name="like" onclick="Like(${bdto.board_id}, ${id });">
+    					좋아요
+					</button>
+					<td>
 					<button type="button" class="btn btn-danger" style="width: 200px; margin-right: 10px;"
         				onclick="location.href='./boardDelete.do?board_id=${bdto.board_id }';">글 삭제하기</button>
         			</td>
@@ -405,5 +409,6 @@
 		crossorigin="anonymous"></script>
 	<script src="js/plugins.js"></script>
 	<script src="js/script.js"></script>
+	<script type="js/like.js"></script>
 </body>
 </html>

@@ -43,6 +43,13 @@ create table comments(
     cm_date DATE DEFAULT sysdate
 );
 
+--like
+create table likes(
+    board_id number,
+    user_id varchar(50),
+    likes number default 0
+);
+
 --cm_id 시퀀스 작성
 create sequence cm_seq
     increment by 1
