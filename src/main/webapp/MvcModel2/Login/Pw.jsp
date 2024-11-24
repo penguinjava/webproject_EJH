@@ -32,7 +32,8 @@
 					<div class="container">
 						<h1 class="text-center mb-4">변경된 비밀번호는 ${pw } 입니다.</h1><br/>
 					</div>
-                            <button type="submit" class="btn btn-primary w-100 mb-3">비밀번호 찾기</button>
+                            <button type="button" class="btn btn-primary w-100 mb-3"
+                             onclick="location.href='./login.do';">로그인 하로 가기</button>
 				</div>
             </div>
         </div>

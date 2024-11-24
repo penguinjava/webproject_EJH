@@ -1,7 +1,6 @@
-package board.ctrl;
+package comment.ctrl;
 
 import java.io.IOException;
-import java.time.LocalDate;
 
 import board.BoardDAO;
 import board.BoardDTO;
@@ -13,12 +12,10 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import utils.JSFunction;
 
-@WebServlet("/boardWrite.do")
-public class BoardWriteCtrl extends HttpServlet{
+@WebServlet("/commentWrite.do")
+public class CommentWriteCtrl extends HttpServlet{
 	private static final long serialVersionUID = 1L;
-	
-	
-	//페이지 이동
+
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
@@ -27,12 +24,11 @@ public class BoardWriteCtrl extends HttpServlet{
 			JSFunction.alertLocation(resp, "로그인 하세요",
 					"./login.do");
 		}else {
-			req.getRequestDispatcher("./MvcModel2/Board/BoardWrite.jsp")
+			req.getRequestDispatcher("./MvcModel2/Comment/CommentWrite.jsp")
 				.forward(req, resp);
 		}
 	}
 	
-	//post
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
@@ -57,11 +53,11 @@ public class BoardWriteCtrl extends HttpServlet{
 			
 			// 성공 or 실패?
 			if (result == 1) {  // 글쓰기 성공
-				resp.sendRedirect("./boardPage.do");
+				resp.sendRedirect("./commentPage.do");
 			}
 			else {  // 글쓰기 실패
 				JSFunction.alertLocation(resp, "글쓰기에 실패했습니다.",
-						"./boardWrite.do");
+						"./commentWrite.do");
 			}
 		}catch (Exception e) {
 			System.out.println("글쓰기 오류");

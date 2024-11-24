@@ -185,25 +185,7 @@
 					</div>
 				</div>
 
-				<div
-					class="col-sm-6 offset-sm-2 offset-md-0 col-lg-5 d-none d-lg-block">
-					<div class="search-bar row bg-light p-2 my-2 rounded-4">
-						<!-- 검색 기능 -->
-						<form action="./boardPage.do" method="GET" class="mb-4" style="text-align: center;">
-							<div class="input-group" style="max-width: 600px; margin: 0 auto;">
-								<select name="searchFild" class="form-select border-0 bg-transparent">
-									<option value="board">자유 게시판</option>
-									<option value="file">자료실 게시판</option>
-									<option value="commend">Q&A 게시판</option>
-								</select>
-								<input type="text" name="search" class="form-control"
-										placeholder="검색하기" name="searchWord"/>
-								<button type="submit" class="btn btn-outline-primary">검색하기</button>
-							</div>
-						</form>
-						<!------------>
-					</div>
-				</div>
+
 
 				<div
 					class="col-sm-8 col-lg-4 d-flex justify-content-end gap-5 align-items-center mt-4 mt-sm-0 justify-content-center justify-content-sm-end">
@@ -250,7 +232,7 @@
 										class="nav-link">자유게시판</a></li>
 									<li class="nav-item dropdown"><a href="./filePage.do"
 										class="nav-link">자료실</a></li>
-									<li class="nav-item"><a href="./commendPage.do"
+									<li class="nav-item"><a href="./commentPage.do"
 										class="nav-link">Q&A게시판</a></li>
 								</ul>
 

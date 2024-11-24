@@ -8,6 +8,7 @@ import java.util.Map;
 
 import board.BoardDAO;
 import board.BoardDTO;
+import comment.CommentDAO;
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -23,7 +24,8 @@ public class CommentPageCtrl extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		BoardDAO dao = new BoardDAO();
+		BoardDAO bdao = new BoardDAO();
+		CommentDAO cdao = new CommentDAO();
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		
@@ -34,11 +36,9 @@ public class CommentPageCtrl extends HttpServlet{
 			map.put("searchField", searchField);
 			map.put("searchWord", searchWord);
 		}
-		int totalCount = dao.selectCount(map);
+		int totalCount = cdao.selectCount(map);
 		
-		
-		
-		
+
 		//페이징 처리//
 		ServletContext application = getServletContext();
 		int pageSize = Integer.parseInt(
@@ -66,8 +66,8 @@ public class CommentPageCtrl extends HttpServlet{
 		//페이지 끝//
 		
 		
-		List<BoardDTO> boardLists = dao.boardPage(map);
-		dao.close();
+		List<BoardDTO> boardLists = cdao.boardPage(map);
+		cdao.close();
 		
 		String pagingImg = BoardPage.pagingStr(totalCount, pageSize,
 				blockPage, pageNum,

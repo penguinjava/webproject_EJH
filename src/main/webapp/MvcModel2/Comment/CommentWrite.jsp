@@ -29,7 +29,7 @@
                 <textarea class="form-control" id="content" name="content" rows="10" placeholder="내용을 입력하세요" required></textarea>
             </div>
             <!-- 게시글 종류 구분 -->
-            <input type="hidden" value="board" name="category" />
+            <input type="hidden" value="comment" name="category" />
             <div class="text-center">
                 <button type="submit" class="btn btn-primary">글 작성</button>
                 <a href="./boardPage.do" class="btn btn-secondary">취소</a>

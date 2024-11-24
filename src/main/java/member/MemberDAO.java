@@ -159,18 +159,39 @@ public class MemberDAO extends DBConnPool{
 		
 		String query = "UPDATE member "
 				+ "	SET password=? "
-				+ " WHERE user_id=?, and user_name=?";
+				+ " WHERE user_id=? and user_name=?";
 		
 		try {
 			psmt = con.prepareStatement(query);
 			psmt.setString(1, rpw);
 			psmt.setString(2, user_id);
-			psmt.setString(2, user_name);
+			psmt.setString(3, user_name);
 			result = psmt.executeUpdate();
 		} catch (Exception e) {
 			System.out.println("비밀번호 변경 실패");
 			e.printStackTrace();
 		}
 		return result;
+	}
+	
+	//발급비밀번호 찾기
+	public MemberDTO newPw(String user_id, String user_name) {
+		MemberDTO mdto = new MemberDTO();
+		String query = "SELECT password from member "
+				+ " WHERE user_id=? and user_name=? ";
+		
+		try {
+			psmt = con.prepareStatement(query);
+			psmt.setString(1,user_id);
+			psmt.setString(2,user_name);
+			rs = psmt.executeQuery();
+			if(rs.next()) {
+				mdto.setPassword(rs.getString(1));
+			}
+		} catch (Exception e) {
+			System.out.println("newPw 찾기중 오류");
+			e.printStackTrace();
+		}
+		return mdto;
 	}
 }

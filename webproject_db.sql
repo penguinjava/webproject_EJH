@@ -38,7 +38,7 @@ CREATE TABLE files (
 create table comments(
     cm_id number PRIMARY KEY,
     board_id number not null,
-    user_id number not null,
+    user_id VARCHAR(50) not null,
     content varchar2(2000),
     cm_date DATE DEFAULT sysdate
 );

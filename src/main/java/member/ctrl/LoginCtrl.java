@@ -63,8 +63,6 @@ public class LoginCtrl extends HttpServlet{
 			//String nick = req.getParameter("nickname");
 			// 아이디 체크 확인
 			String rememberId = req.getParameter("rememberId");
-			// 로그인 위치 지정
-			String loginHome = req.getParameter("loginHome");
 			
 			System.out.println(rememberId);
 			
@@ -114,13 +112,8 @@ public class LoginCtrl extends HttpServlet{
 				JSFunction.alert(resp, "!로그인 성공!");
 				
 				//로그인을 위치 지정
-				if(loginHome.equals("home")) {
 					req.getRequestDispatcher("./home.do")
 						.forward(req, resp);
-				}else if(loginHome.equals("info")){
-					req.getRequestDispatcher("./memberInfo.do")
-						.forward(req, resp);
-				}
 
 			}
 		} catch (Exception e) {

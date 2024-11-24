@@ -28,7 +28,7 @@
         <div class="row justify-content-center">
             <div class="col-md-6 bg-white p-5 rounded-3 shadow">
             	<h3 class="text-center mb-4">비밀번호 찾기</h3>
-                	<form action="./login.do" method="post" class="p-4">
+                	<form action="./searchPw.do" method="post" class="p-4">
                    		<div class="mb-3">
         					<label for="user_id" class="form-label">회원님의 ID</label>
         					<input type="text" id="user_id" name="user_id" class="form-control"

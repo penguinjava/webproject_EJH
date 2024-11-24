@@ -184,7 +184,7 @@
 
 				<div class="col-sm-4 col-lg-3 text-center text-sm-start">
 					<div class="main-logo">
-						<a href="index.html"> <img src="images/logo.png" alt="logo"
+						<a href="./home.do"> <img src="images/logo.png" alt="logo"
 							class="img-fluid">
 						</a>
 					</div>
@@ -311,36 +311,36 @@
 			style="width: 90%; margin: 20px auto; font-size: 18px;">
 				<tr>
 					<td style="white-space: nowrap;"><strong>번호</strong></td>
-					<td style="white-space: nowrap;">${dto.board_id }</td>
+					<td style="white-space: nowrap;">${bdto.board_id }</td>
 					<td style="white-space: nowrap;"><strong>작성자</strong></td>
-					<td style="white-space: nowrap;">${dto.nickname }</td>
+					<td style="white-space: nowrap;">${bdto.nickname }</td>
 					<td style="white-space: nowrap;"><strong>작성일</strong></td>
-					<td style="white-space: nowrap;">${dto.postdate }</td>
+					<td style="white-space: nowrap;">${bdto.postdate }</td>
 				</tr>
 				<tr>
 					<td style="white-space: nowrap;"><strong>제목</strong></td>
-					<td style="white-space: nowrap;">${dto.title }</td>
+					<td style="white-space: nowrap;">${bdto.title }</td>
 					<td style="white-space: nowrap;"><strong>조회수</strong></td>					
-					<td style="white-space: nowrap;">${dto.visitcount }</td>
+					<td style="white-space: nowrap;">${bdto.visitcount }</td>
 				</tr>
 				<tr>
 					<td colspan="6" style="text-align: center; font-size: 20px;
 						width: 100%; padding: 20px;">
-    					${dto.content}
+    					${bdto.content}
 					</td>
 				</tr>
 		</table>
 		<table class="table table-striped table-hover table-bordered"
 			style="width: 90%; margin: 20px auto; font-size: 18px;">
 				<tr>
-					<c:if test="${dto.nickname eq nick }">
+					<c:if test="${bdto.nickname eq nick }">
 					<td>
 					<button type="button" class="btn btn-danger" style="width: 200px; margin-right: 10px;"
-        				onclick="location.href='./boardDelete.do?board_id=${dto.board_id }';">글 삭제하기</button>
+        				onclick="location.href='./boardDelete.do?board_id=${bdto.board_id }';">글 삭제하기</button>
         			</td>
         			<td>
         			<button type="button" class="btn btn-danger" style="width: 200px; margin-right: 10px;"
-        				onclick="location.href='./boardEdit.do?board_id=${dto.board_id }';">글 수정하기</button>
+        				onclick="location.href='./boardEdit.do?board_id=${bdto.board_id }';">글 수정하기</button>
         			</td>
         			</c:if>
         			<td>
@@ -349,9 +349,52 @@
         			</td>
 				</tr>
 		</table>
-
-
-
+		<br/>
+		<!-- 여기서부터 댓글 -->
+		
+		<h1 style="margin-left: 50px;"><strong>댓글</strong></h1>
+		
+		<!-- 작성 -->
+		<c:if test="${not empty nick}">
+		<div class="container-fluid" style="margin-left: 25px;">
+			<div class="row py-3">
+				<div class="d-flex  justify-content-center justify-content-sm-between align-items-center">
+					<form action="./comment.do?board_id=${bdto.board_id }" method="get">
+					<label for="cm" class="form-label"><strong>${nick }</strong>님의 댓글</label>
+                	<textarea class="form-control" id="cm" name="cm" rows="3" cols="30"
+                		placeholder="댓글 입력"></textarea>
+                	<button type="submit" class="btn btn-primary w-100 mb-3">댓글 달기</button>
+                	<!-- 숨김 -->
+                	<input type="hidden" name="board_id" value="${bdto.board_id }"/>
+					</form>
+				</div>
+			</div>
+		</div>
+		</c:if>
+		<!-- 리스트 -->
+		<c:choose>
+			<c:when test="${empty commentList }">
+				<table class="table table-striped table-hover table-bordered"
+					style="width: 90%; margin: 20px auto; font-size: 18px;">
+					<tr>
+						<td> 등록된 댓글 없음</td>
+					</tr>
+				</table>
+			</c:when>
+			<c:otherwise>
+				<c:forEach items="${commentList }" var="row" varStatus="loop">
+				<table class="table table-striped table-hover table-bordered"
+					style="width: 90%; margin: 20px auto; font-size: 18px;">
+					<tr>
+						<td><strong>${row.nickname }님</strong><br/>
+							${row.content }<br/>
+							<small>${row.cm_date }</small>
+						</td>
+					</tr>
+				</table>
+				</c:forEach>
+			</c:otherwise>
+		</c:choose>
 	</section>
 	<script src="js/jquery-1.11.0.min.js"></script>
 	<script

@@ -99,8 +99,6 @@ public class BoardDAO extends DBConnPool{
 	// 글쓰기 뷰를 select 식별
 	public BoardDTO listView(String board_id) {
 		BoardDTO dto = new BoardDTO();
-		
-		
 		String query = "select B.*, M.nickname "
 				+ " from board B inner join member M "
 				+ "    on B.user_id=M.user_id "

@@ -2,6 +2,8 @@ package member.ctrl;
 
 import java.io.IOException;
 
+import org.apache.tomcat.jakartaee.commons.lang3.text.StrTokenizer;
+
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -31,14 +33,25 @@ public class SearchPwCtrl extends HttpServlet{
 		MemberDAO mdao = new MemberDAO();
 		MemberDTO mdto = new MemberDTO();
 		
-		int result = mdao.changePw(user_id, user_name);
-		String pw = mdto.getPassword();
-		
-		
-		if(result==1) {
-			req.setAttribute("pw", pw);
-			JSFunction.alertLocation(resp,"새로운 비밀번호를 발급했습니다.",
-					"./MvcModel2/Login/Pw.jsp");
+		try {
+			int result = mdao.changePw(user_id, user_name);
+			System.out.println("result : "+result);
+			mdto = mdao.newPw(user_id, user_name);
+			
+			System.out.println("newresult : "+mdto.getPassword());
+			mdao.close();
+			
+			String pw = mdto.getPassword();
+			System.out.println("발급한 비밀번호 : "+pw);
+			
+			if(result==1) {
+				req.setAttribute("pw", pw);
+				req.getRequestDispatcher("./MvcModel2/Login/Pw.jsp")
+					.forward(req, resp);
+			}
+		} catch (Exception e) {
+			System.out.println("비밀번호 이동중 오류");
+			e.printStackTrace();
 		}
 	}
 }

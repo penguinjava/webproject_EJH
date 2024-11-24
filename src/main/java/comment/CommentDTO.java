@@ -7,6 +7,7 @@ public class CommentDTO {
 	private String user_id; // member의 user_id
 	private String content;
 	private String cm_date;
+	private String nickname;
 	
 	//get&set 설정
 	public String getCm_id() {
@@ -38,5 +39,12 @@ public class CommentDTO {
 	}
 	public void setCm_date(String cm_date) {
 		this.cm_date = cm_date;
+	}
+	public String getNickname() {
+		return nickname;
+	}
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
 	}	
+	
 }
